@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Build Status](https://travis-ci.org/mmennis/petclinic-react-bulma.svg?branch=master)](https://travis-ci.org/mmennis/petclinic-react-bulma)
+
+
+#To run docker files:
+```docker-compose -f docker/docker-compose.yml build test```
+```docker-compose -f docker/docker-compose.yml run --rm test```
+
 
 ## Available Scripts
 
