@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableModule TableHeader should render a table header per snapshot 1`] = `
+<thead>
+  <tr>
+    <th>
+      one
+    </th>
+    <th>
+      two
+    </th>
+    <th>
+      three
+    </th>
+    <th>
+      four
+    </th>
+  </tr>
+</thead>
+`;
