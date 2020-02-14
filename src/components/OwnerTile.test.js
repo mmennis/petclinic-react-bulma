@@ -30,4 +30,10 @@ describe('OwnerTile', () => {
         expect(city).toBeInTheDocument()
     })
 
+    it('should log an error to the console if required owner props missing', () => {
+        console.error = jest.fn();
+        React.createElement(OwnerTile)
+        expect(console.error).toHaveBeenCalledTimes(1);
+    })
+
 })
