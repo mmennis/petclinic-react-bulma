@@ -40,5 +40,5 @@ export default class OwnerGrid extends React.Component {
 }
 
 OwnerGrid.propTypes = {
-    owners: PropTypes.object.isRequired
+    owners: PropTypes.array.isRequired
 }
