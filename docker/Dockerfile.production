@@ -1,0 +1,20 @@
+FROM node:12-alpine AS build-deps
+
+RUN npm install react-scripts@3.0.1 -g --silent
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY ["package.json", "yarn.lock", "./"]
+RUN yarn install
+COPY ./ /usr/src/app/
+
+ENV NODE_PATH=/app/node_modules
+ENV PATH /app/node_modules/.bin:$PATH
+RUN CI=true yarn test
+RUN yarn build
+
+FROM nginx:1.15.9-alpine
+COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

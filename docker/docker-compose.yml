@@ -2,12 +2,16 @@ version: "3"
 
 services:
   dev:
+    container_name: petclinic-frontend-dev
     build:
       context: ../
       dockerfile: docker/Dockerfile
     env_file:
       - ../.env
+    environment: 
+      - NODE_ENV=development
   test:
+    container_name: petclinic-frontend-test
     build:
       context: ../
       dockerfile: docker/Dockerfile
@@ -15,4 +19,14 @@ services:
       - ../.env
     environment:
       - CI=true
+      - NODE_ENV=test
     command: yarn test
+  prod:
+    container_name: petclinic-frontend-prod
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.production
+    ports:
+      - '3001:80'
+    environment: 
+      - NODE_ENV=production
