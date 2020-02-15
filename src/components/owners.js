@@ -37,6 +37,7 @@ export default class Owners extends React.Component {
     }
 
     render() {
+        this.state.owners.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1)
         let startIndex = (this.state.currentPage - 1) * OWNERS_PER_PAGE
         let gridOwners = this.state.owners.slice(startIndex, startIndex + OWNERS_PER_PAGE)
         return (
