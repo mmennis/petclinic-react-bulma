@@ -29,4 +29,20 @@ describe('FilterFormState', () => {
         expect(callback).toHaveBeenCalledWith({ stateFilter: 'CA' })
     })
 
+    it('should ignire whitespace and pass on trimmed entry', () => {
+        const callback = jest.fn()
+        const { getByTestId } = render(<FilterFormState handleFilterUpdate={callback} />)
+        fireEvent.change(getByTestId("input"), { target: { value: 'CA ' }})
+        fireEvent.submit(getByTestId("form"))
+        expect(callback).toHaveBeenCalledWith({ stateFilter: 'CA' })
+    })
+
+    it('should convert entry to upper case', () => {
+        const callback = jest.fn()
+        const { getByTestId } = render(<FilterFormState handleFilterUpdate={callback} />)
+        fireEvent.change(getByTestId("input"), { target: { value: 'ca' }})
+        fireEvent.submit(getByTestId("form"))
+        expect(callback).toHaveBeenCalledWith({ stateFilter: 'CA' })
+    })
+
 })
