@@ -1,6 +1,6 @@
 import React from 'react'
 import { create } from 'react-test-renderer'
-import { render, fireEvent, getByText } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import FilterFormState from './FilterFormState'
 
 describe('FilterFormState', () => {
