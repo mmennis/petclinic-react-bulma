@@ -14,7 +14,7 @@ export default class FilterFormState extends React.Component {
     }
 
     handleChange = (e) => {
-        this.setState({ stateFilter: e.target.value })
+        this.setState({ stateFilter: e.target.value.trim() })
     }
 
     submitForm = (e) => {
