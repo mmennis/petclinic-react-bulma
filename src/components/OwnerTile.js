@@ -6,9 +6,9 @@ export default class OwnerTile extends React.Component {
 
     render() {
         return (
-            <Tile size={3} renderAs="article" kind="child" notification color="light" paddingless={true}>
-                <Card paddingless={true} outlined={true}>
-                    <Card.Header outlined={true}>
+            <Tile size={3} renderAs="article" kind="child" notification color="light" paddingless={true} key={this.props.owner._id}>
+                <Card paddingless={true} rounded="true" outlined="true" >
+                    <Card.Header outlined="true" >
                         <Card.Header.Title>{this.props.owner.first_name} {this.props.owner.last_name}</Card.Header.Title>
                     </Card.Header>
                     <Card.Content paddingless={false} color="light">            

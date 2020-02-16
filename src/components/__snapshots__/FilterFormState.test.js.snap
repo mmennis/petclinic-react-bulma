@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterFormState should render as per the snapshot 1`] = `
+<div>
+  <form
+    data-testid="form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <div
+        className="tile is-parent"
+      >
+        <div
+          className="tile is-1"
+        >
+          <label
+            className="label"
+          >
+            State:
+          </label>
+        </div>
+        <div
+          className="tile is-3"
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input"
+              data-testid="input"
+              disabled={false}
+              name="stateFilter"
+              onChange={[Function]}
+              placeholder=""
+              readOnly={false}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="tile is-1"
+        >
+          <div
+            className="control"
+          >
+            <button
+              className="is-primary button"
+              disabled={false}
+              onClick={[Function]}
+              tabIndex={0}
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;

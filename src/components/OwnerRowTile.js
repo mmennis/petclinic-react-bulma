@@ -33,5 +33,5 @@ export default class OwnerRowTile extends React.Component {
 }
 
 OwnerRowTile.propTypes = {
-    owners: PropTypes.object.isRequired
+    owners: PropTypes.array.isRequired
 }

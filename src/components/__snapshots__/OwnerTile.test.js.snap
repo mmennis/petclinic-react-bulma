@@ -6,11 +6,12 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
 >
   <div
     className="card is-paddingless"
-    outlined={true}
+    outlined="true"
+    rounded="true"
   >
     <div
       className="card-header"
-      outlined={true}
+      outlined="true"
     >
       <div
         className="card-header-title"
