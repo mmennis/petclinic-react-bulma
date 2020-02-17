@@ -38,6 +38,11 @@ function App() {
             </Navbar.Brand>
             <Navbar.Menu >
               <Navbar.Container>
+                <Navbar.Item href="/home" textWeight="bold" paddingless={true}>
+                  <Navbar.Link arrowless={true} to={'/home'}>
+                    Home
+                  </Navbar.Link>
+                </Navbar.Item>
                 <Navbar.Item textWeight="bold" href="/owners" paddingless={true}>
                   <Navbar.Link arrowless={true} to={'/owners'}>
                     Owners
@@ -46,11 +51,6 @@ function App() {
                 <Navbar.Item href="/vets" textWeight="bold" paddingless={true}>
                   <Navbar.Link arrowless={true} to={'/vets'}>
                     Vets
-                  </Navbar.Link>
-                </Navbar.Item>
-                <Navbar.Item href="/home" textWeight="bold" paddingless={true}>
-                  <Navbar.Link arrowless={true} to={'/home'}>
-                    Home
                   </Navbar.Link>
                 </Navbar.Item>
               </Navbar.Container>
