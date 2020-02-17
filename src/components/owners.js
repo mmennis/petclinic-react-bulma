@@ -31,6 +31,7 @@ export default class Owners extends React.Component {
         axios.get(BASE_URL + '/owners')
             .then((response) => {
                 const owners = response.data.data;
+                console.log(owners[0])
                 this.setState({ 
                     owners,
                     totalPages: owners.length/OWNERS_PER_PAGE,
