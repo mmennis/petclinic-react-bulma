@@ -4,7 +4,7 @@ import React from 'react'
 import axios from 'axios'
 import OwnerGrid from './OwnerGrid'
 import { Section, Pagination } from 'react-bulma-components'
-import FilterFormState from './FilterFormState'
+import FilterFormState from '../FilterFormState'
 
 const BASE_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
 const OWNERS_PER_PAGE = 20;

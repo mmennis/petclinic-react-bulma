@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Owners from './components/owners'
+import Owners from './components/owners/owners'
 import Vets from './components/vets/vets'
 import Home from './components/Home'
 import { Section, Hero, Container, Heading, Navbar } from 'react-bulma-components'
