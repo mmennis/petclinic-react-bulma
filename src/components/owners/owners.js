@@ -67,13 +67,14 @@ export default class Owners extends React.Component {
         let startIndex = (this.state.currentPage - 1) * OWNERS_PER_PAGE
         let gridOwners = this.state.filteredOwners.slice(startIndex, startIndex + OWNERS_PER_PAGE)
         return (
-            <Section>
+            <Section paddingless={false} style={{'padding-top': '15px',}}>
                 <FilterFormState handleFilterUpdate={this.handleFilterUpdate} />
                 <Pagination 
                     current={this.state.currentPage} 
                     total={this.state.totalPages} 
                     delta={3}
                     onChange={this.onClick}
+                    size="small"
                 />
                 <OwnerGrid 
                     owners={gridOwners} 

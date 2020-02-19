@@ -1,6 +1,8 @@
 import React from 'react'
 import { Tile, Heading, Content, Card } from 'react-bulma-components'
 import PropTypes from 'prop-types'
+import OwnersDetail from './OwnersDetail'
+import Pluralize from 'react-pluralize'
 
 export default class OwnerTile extends React.Component {
 
@@ -12,15 +14,11 @@ export default class OwnerTile extends React.Component {
                         <Card.Header.Title>{this.props.owner.first_name} {this.props.owner.last_name}</Card.Header.Title>
                     </Card.Header>
                     <Card.Content paddingless={false} color="light">            
-                        <Heading size={6} subtitle>{this.props.owner.pets.length} pets</Heading>
-                        <Content >
-                            <Heading marginless={true} paddingless={false} size={6}>Address:</Heading>
-                            <p>{this.props.owner.address}<br/>{this.props.owner.city}, {this.props.owner.state}</p>
-                        </Content>
                         <Content size="small">
-                            <Heading marginless={true} paddingless={false} size={6}>Phone:</Heading >
-                            <p>{this.props.owner.telephone}</p>
+                            <p>{this.props.owner.city}, {this.props.owner.state}</p>
                         </Content>
+                        <Heading size={4} subtitle><Pluralize singular={'pet'} count={this.props.owner.pets.length}/></Heading>
+                        <OwnersDetail owner={this.props.owner} modal={{closeOnBlur: true, showClose: true }}/>
                     </Card.Content>
                 </Card>                
             </Tile>

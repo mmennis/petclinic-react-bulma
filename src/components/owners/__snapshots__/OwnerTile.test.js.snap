@@ -25,39 +25,34 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
       className="card-content"
       color="light"
     >
-      <h1
-        className="subtitle is-6"
-      >
-        1
-         pets
-      </h1>
       <div
-        className="content"
+        className="content is-small"
       >
-        <h1
-          className="title is-6 is-marginless"
-        >
-          Address:
-        </h1>
         <p>
-          1234 Main St.
-          <br />
           Cupertino
           , 
           CA
         </p>
       </div>
-      <div
-        className="content is-small"
+      <h1
+        className="subtitle is-4"
       >
-        <h1
-          className="title is-6 is-marginless"
+        <span
+          className={null}
+          style={Object {}}
         >
-          Phone:
-        </h1>
-        <p>
-          408-555-1212
-        </p>
+          1 pet
+        </span>
+      </h1>
+      <div>
+        <button
+          className="is-small button"
+          disabled={false}
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Details
+        </button>
       </div>
     </div>
   </div>
