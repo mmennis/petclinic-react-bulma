@@ -14,7 +14,7 @@ export default class OwnerGrid extends React.Component {
     render() {
         
         return(
-            <Section style={{ "padding-top": '15px'}}>
+            <Section style={{ "paddingTop": '15px'}}>
                 <Box>
                     <Tile kind="ancestor" vertical>
                         {this.createGrid()}

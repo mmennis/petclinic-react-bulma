@@ -71,7 +71,7 @@ export default class Vets extends React.Component {
         let gridVets = this.state.filteredVets.slice(startIndex, startIndex + VETS_PER_PAGE)
 
         return (
-            <Section>
+            <Section paddingless={false} style={{'paddingTop': '15px',}}>
                 <FilterFormState handleFilterUpdate={this.handleFilterUpdate} />
                 <Pagination 
                     current={this.state.currentPage}

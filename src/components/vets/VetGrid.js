@@ -25,7 +25,7 @@ export default class VetGrid extends React.Component {
 
     render() {
         return (
-            <Section>
+            <Section style={{ "paddingTop": '15px'}}>
                 <Box>
                     <Tile kind="ancestor" vertical>
                         {this.createGrid()}

@@ -2,7 +2,7 @@
 
 exports[`OwnerTile should render as per the snapshot 1`] = `
 <article
-  className="tile notification is-child is-3 is-light is-paddingless"
+  className="tile notification is-child is-3 is-light"
 >
   <div
     className="card is-paddingless"
