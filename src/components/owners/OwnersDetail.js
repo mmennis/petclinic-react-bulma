@@ -37,7 +37,7 @@ export default class OwnersDetail extends React.Component {
                                 <Media.Item>
                                     <Content>
                                         <Heading marginless={true} paddingless={false} size={6}>Address:</Heading>
-                                        <p style={{ 'margin-bottom': '5px'}}>{this.props.owner.address}<br/>{this.props.owner.city}, {this.props.owner.state}</p>
+                                        <p style={{ 'marginBottom': '5px'}}>{this.props.owner.address}<br/>{this.props.owner.city}, {this.props.owner.state}</p>
                                         <Heading marginless={true} paddingless={false} size={6}>Phone:  </Heading >
                                         <p>{this.props.owner.telephone}</p>
                                         <OwnerPetList owner={this.props.owner} />
