@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Owners from './components/owners/owners'
 import Vets from './components/vets/vets'
@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
 
-  //const BASE_API_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
+  const [ activeNavbar, setActiveNavbar ] = useState(false)
   
   return (
     <div className="App">
@@ -28,13 +28,16 @@ function App() {
           </Hero>
         </Section>
         <Section paddingless>
-          <Navbar active={false} transparent={false} color="light" >
+          <Navbar active={activeNavbar} transparent={false} color="light" >
             <Navbar.Brand>
               <Navbar.Item renderAs="a" href="#">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" 
-                  alt="Bulma: a modern CSS framework"/>
+                <img 
+                  src="https://bulma.io/images/bulma-logo.png" 
+                  width="112" height="28" 
+                  alt="Bulma: a modern CSS framework"
+                />
               </Navbar.Item>
-              <Navbar.Burger />
+              <Navbar.Burger onClick={() => setActiveNavbar(!activeNavbar)}/>
             </Navbar.Brand>
             <Navbar.Menu >
               <Navbar.Container>
