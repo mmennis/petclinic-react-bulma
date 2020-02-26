@@ -12,11 +12,9 @@ export default class VetRowTile extends React.Component {
 
     createRow = () => {
         let list = []
-        this.props.vets.map((vet, vetId) => {
-            list.push(
-                <VetTile key={vetId} vet={vet} />
-            )
-        })
+        for (const vet of this.props.vets) {
+            list.push(<VetTile key={vet._id} vet={vet} />)
+        }
         return list
     }
 

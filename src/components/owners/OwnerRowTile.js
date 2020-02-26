@@ -22,11 +22,9 @@ export default class OwnerRowTile extends React.Component {
 
     createRow = () => {
         let list = []
-        this.props.owners.map((owner, ownerId) => {
-            list.push(
-                <OwnerTile key={ownerId} owner={owner} />
-            )
-        })
+        for (const owner of this.props.owners) {
+            list.push(<OwnerTile key={owner._id} owner={owner} />)
+        }
         return list
     }
 

@@ -51,9 +51,10 @@ export default class OwnerPetList extends React.Component {
 
     createPetList = () => {
         let list = []
-        this.state.pets.map((pet) => {
-        list.push(<List.Item key={pet._id}>{pet.name} a {pet.pet_type} aged {pet.age}</List.Item>)
-        })
+
+        for (const pet of this.state.pets) {
+            list.push(<List.Item key={pet._id}>{pet.name} a {pet.pet_type} aged {pet.age}</List.Item>)
+        }
         return list
     }
 }
