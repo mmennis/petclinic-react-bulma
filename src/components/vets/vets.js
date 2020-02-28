@@ -36,7 +36,8 @@ export default class Vets extends React.Component {
             console.log(`New totalPage count is ${Math.ceil(fVets.length/VETS_PER_PAGE)}`)
             this.setState({
                 filteredVets: fVets,
-                totalPages: Math.ceil(fVets.length/VETS_PER_PAGE)
+                totalPages: Math.ceil(fVets.length/VETS_PER_PAGE),
+                currentPage: 1
             })
         })
     }

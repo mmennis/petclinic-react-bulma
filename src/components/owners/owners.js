@@ -55,7 +55,8 @@ export default class Owners extends React.Component {
                 this.state.owners)
             this.setState({ 
                 filteredOwners: fOwners,
-                totalPages: Math.ceil(fOwners.length/OWNERS_PER_PAGE)
+                totalPages: Math.ceil(fOwners.length/OWNERS_PER_PAGE),
+                currentPage: 1,
             }) 
         })
 
