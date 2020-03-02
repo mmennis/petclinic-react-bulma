@@ -27,7 +27,7 @@ describe('VetTile', () => {
         expect(vetFName).toBeInTheDocument();
         const vetLName = getByText(/Last/i)
         expect(vetLName).toBeInTheDocument()
-        const vetHours = getByText(/office/i)
+        const vetHours = getByText(/Hours/i)
         expect(vetHours).toBeInTheDocument()
     })
 

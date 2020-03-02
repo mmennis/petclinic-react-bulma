@@ -26,16 +26,9 @@ exports[`VetTile should render as per the snapshot 1`] = `
       color="light"
     >
       <div
-        className="content is-small"
+        className="content is-medium"
       >
-        <h1
-          className="title is-6 is-marginless"
-        >
-          Office Hours
-        </h1>
-        <p>
-          8:00 AM - 5:00 PM
-        </p>
+        <p />
       </div>
       <div
         className="content"
@@ -56,14 +49,31 @@ exports[`VetTile should render as per the snapshot 1`] = `
       <div
         className="content is-small"
       >
-        <h1
-          className="title is-6 is-marginless"
-        >
-          Phone:
-        </h1>
         <p>
           (408) 555-1212
         </p>
+      </div>
+      <div
+        className="content is-small"
+      >
+        <p>
+          Hours: 
+          8:00 AM - 5:00 PM
+        </p>
+      </div>
+      <div>
+        <button
+          className="is-small button"
+          disabled={false}
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Edit
+        </button>
+        <form
+          data-testid="form"
+          onSubmit={[Function]}
+        />
       </div>
     </div>
   </div>

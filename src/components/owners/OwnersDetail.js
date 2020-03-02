@@ -26,7 +26,7 @@ export default class OwnersDetail extends React.Component {
                 <Button onClick={this.open} size="small">Details</Button>
                 <Modal show={this.state.show} onClose={this.close} {...this.props.modal} >
                     <Modal.Card>
-                        <Modal.Card.Head>
+                        <Modal.Card.Head onClose={this.close}>
                             <Modal.Card.Title>{this.props.owner.first_name} {this.props.owner.last_name}</Modal.Card.Title>
                         </Modal.Card.Head>
                         <Modal.Card.Body>
