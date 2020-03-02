@@ -18,11 +18,10 @@ export default class VetTile extends React.Component {
     }
 
     handleVetUpdate = (newVet) => {
-        console.log(`Received updated vet data ${newVet}`)
-        console.log(`Id is: ${newVet._id}`)
+        console.log(`Received updated vet data ${JSON.stringify(newVet)}`)
         axios.put(`${BASE_URL}/vets/${newVet._id}`, newVet)
             .then((response) => {
-                console.log(`Response for vet update: ${response}`)
+                console.log(`Response for vet update: ${response.data.msg}`)
             })
             .catch((err) => {
                 console.error(`Problem with Vet update request: ${err}`)

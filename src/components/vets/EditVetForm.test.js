@@ -33,4 +33,16 @@ describe('EditVetForm', () => {
         expect(console.error).toHaveBeenCalledTimes(2)
     })
 
+    it('should call the handleVetUpdate callback function with new vet speciality', () => {
+        const vetUpdateCallback = jest.fn()
+        const { getByTestId } = render(<EditVetForm vet={vetTest} handleVetUpdate={vetUpdateCallback} />)
+        fireEvent.click(getByTestId("modal-open"))
+        fireEvent.change(getByTestId("specialty-input"), { target: { value: 'testing'}})
+        fireEvent.submit(getByTestId('form'))
+        expect(vetUpdateCallback).toHaveBeenCalledTimes(1)
+        const fixedTest = {...vetTest}
+        fixedTest.specialty = 'testing'
+        expect(vetUpdateCallback).toHaveBeenCalledWith(fixedTest)
+    })
+
 })
