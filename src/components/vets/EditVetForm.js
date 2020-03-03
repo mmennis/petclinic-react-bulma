@@ -21,17 +21,7 @@ export default class EditVetForm extends React.Component {
         this.state = {
             show: false,
             errors: {},
-            vet: {
-                _id: this.props.vet._id,
-                first_name: this.props.vet.first_name,
-                last_name: this.props.vet.last_name,
-                address: this.props.vet.address,
-                city: this.props.vet.city,
-                state: this.props.vet.state,
-                office_hours: this.props.vet.office_hours,
-                telephone: this.props.vet.telephone,
-                specialty: this.props.vet.specialty,
-            }
+            vet: { ...props.vet }
         }
 
         this.open = this.open.bind(this)
