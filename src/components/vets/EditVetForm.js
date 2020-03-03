@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 
 const fieldStyle = {
     "marginRight": "20px", 
-    "marginTop": "8px"
+    "marginTop": "8px",
+    'width': '95px'
 }
 
 const errorStyle = {
@@ -101,10 +102,10 @@ export default class EditVetForm extends React.Component {
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>
                             <Modal.Card.Head onClose={this.close}>
-                                <Modal.Card.Title>{this.props.vet.first_name} {this.props.vet.last_name}</Modal.Card.Title>
+                                <Modal.Card.Title >{this.props.vet.first_name} {this.props.vet.last_name}</Modal.Card.Title>
                             </Modal.Card.Head>
                             <Modal.Card.Body>
-                                <Form.Field horizontal={true}>
+                                <Form.Field horizontal={true} marginless={true}>
                                     <Form.Label style={ fieldStyle }>First Name</Form.Label>
                                     <Form.Control>
                                         <Form.Input 
@@ -118,7 +119,7 @@ export default class EditVetForm extends React.Component {
                                     </Form.Control>
                                     <Form.Help color="danger" style={errorStyle}>{this.state.errors.first_name}</Form.Help>
                                 </Form.Field>
-                                <Form.Field horizontal={true}>
+                                <Form.Field horizontal={true} marginless={true}>
                                     <Form.Label style={ fieldStyle }>Last Name</Form.Label>
                                     <Form.Control>
                                         <Form.Input 
@@ -141,7 +142,7 @@ export default class EditVetForm extends React.Component {
                                             <Content>
                                                 <Heading size={5} marginless={true}>Address</Heading>
                                                 <Form.Field horizontal={true} marginless={true}>
-                                                    <Form.Label style={ {"marginRight": "20px", "marginTop": "8px"} }>Street</Form.Label>
+                                                    <Form.Label style={ {"width": '50px',"marginRight": "20px", "marginTop": "8px"} }>Street</Form.Label>
                                                     <Form.Control>
                                                         <Form.Input 
                                                             type="text"
@@ -155,7 +156,7 @@ export default class EditVetForm extends React.Component {
                                                     <Form.Help color="danger" style={errorStyle}>{this.state.errors.address}</Form.Help>
                                                 </Form.Field>
                                                 <Form.Field horizontal={true} marginless={true}>
-                                                    <Form.Label style={ {"marginRight": "20px", "marginTop": "8px"} }>City</Form.Label>
+                                                    <Form.Label style={ {"width": '50px', "marginRight": "20px", "marginTop": "8px"} }>City</Form.Label>
                                                     <Form.Control>
                                                         <Form.Input 
                                                             type="text"
@@ -169,7 +170,7 @@ export default class EditVetForm extends React.Component {
                                                     <Form.Help color="danger" style={errorStyle}>{this.state.errors.city}</Form.Help>
                                                 </Form.Field> 
                                                 <Form.Field horizontal={true} marginless={true}>
-                                                    <Form.Label style={{ "marginRight": "20px", "marginTop": "8px" }}>State</Form.Label>
+                                                    <Form.Label style={{ "width": '50px', "marginRight": "20px", "marginTop": "8px" }}>State</Form.Label>
                                                     <Form.Control>
                                                         <Form.Input 
                                                             type="text"
@@ -233,8 +234,12 @@ export default class EditVetForm extends React.Component {
                                 
                             </Modal.Card.Body>
                             <Modal.Card.Foot>
-                                <Button type="submit" onClick={this.handleSubmit} size="small">Update Vet</Button>
-                                <Button type="cancel" onClick={this.close} size="small">Cancel</Button>
+                                <Button type="submit" onClick={this.handleSubmit} size="small" color="success" rounded={true}>
+                                    Update Vet
+                                </Button>
+                                <Button type="cancel" onClick={this.close} size="small" color="danger" rounded={true}>
+                                    Cancel
+                                </Button>
                             </Modal.Card.Foot>
                         </Modal.Card>
                     </Modal>
