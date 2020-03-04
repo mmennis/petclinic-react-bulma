@@ -3,6 +3,7 @@ import axios from 'axios'
 import VetGrid from './VetGrid'
 import { Section, Pagination } from 'react-bulma-components'
 import FilterFormState from '../FilterFormState'
+import NewVetForm from './NewVetForm'
 
 const BASE_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
 const VETS_PER_PAGE = 20;
@@ -21,6 +22,7 @@ export default class Vets extends React.Component {
 
         this.onClick = this.onClick.bind(this)
         this.handleFilterUpdate = this.handleFilterUpdate.bind(this)
+        this.handleNewVet = this.handleNewVet.bind(this)
     }
 
 
@@ -40,6 +42,20 @@ export default class Vets extends React.Component {
                 currentPage: 1
             })
         })
+    }
+
+    handleNewVet = (newVet) => {
+        console.log(`vets page received new vet ${newVet}`)
+        // axios.post(BASE_URL + 'vets', newVet)
+        //     .then((res) => {
+        //         console.log(`Received response from server: ${JSON.stringify(res)}`)
+        //     })
+        //     .catch((err) => {
+        //         console.error(`Problem adding new vet to backend database: ${err}`)
+        //     })
+        //     .finally(() => {
+        //         console.log(`New vet added to database: ${newVet}`)
+        //     })
     }
 
     onClick = (pageNumber) => {
@@ -80,6 +96,7 @@ export default class Vets extends React.Component {
                     delta={3}
                     onChange={this.onClick}
                 />
+                <NewVetForm modal={{closeOnBlur: true, showClose: true }} handleNewVet={this.handleNewVet}/>
                 <VetGrid 
                     vets={gridVets}
                 />

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewVetForm should render as per the snapshot 1`] = `
+<div>
+  <button
+    className="is-primary is-small button"
+    data-testid="modal-open"
+    disabled={false}
+    onClick={[Function]}
+    tabIndex={0}
+  >
+    New Vet
+  </button>
+</div>
+`;
