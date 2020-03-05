@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NewVetForm should render as per the snapshot 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "marginLeft": "25px",
+      "marginTop": "20px",
+    }
+  }
+>
   <button
     className="is-primary is-small button"
     data-testid="modal-open"
@@ -11,5 +18,9 @@ exports[`NewVetForm should render as per the snapshot 1`] = `
   >
     New Vet
   </button>
+  <form
+    data-testid="form"
+    onSubmit={[Function]}
+  />
 </div>
 `;

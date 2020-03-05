@@ -31,7 +31,7 @@ export default class FilterFormState extends React.Component {
                             <Tile size={1}>
                                 <Form.Label>State:</Form.Label>
                             </Tile>
-                            <Tile size={3}>
+                            <Tile size={2}>
                                 <Form.Control>
                                     <Form.Input 
                                         name="stateFilter" 
@@ -44,7 +44,7 @@ export default class FilterFormState extends React.Component {
                             </Tile>
                             <Tile size={1}>
                                 <Form.Control>
-                                    <Button type="submit" color="primary" onClick={this.submitForm}>Submit</Button>
+                                    <Button type="submit" color="primary" onClick={this.submitForm}>Apply Filter</Button>
                                 </Form.Control>
                             </Tile>
                         </Tile>

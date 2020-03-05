@@ -45,17 +45,19 @@ export default class Vets extends React.Component {
     }
 
     handleNewVet = (newVet) => {
-        console.log(`vets page received new vet ${newVet}`)
-        // axios.post(BASE_URL + 'vets', newVet)
-        //     .then((res) => {
-        //         console.log(`Received response from server: ${JSON.stringify(res)}`)
-        //     })
-        //     .catch((err) => {
-        //         console.error(`Problem adding new vet to backend database: ${err}`)
-        //     })
-        //     .finally(() => {
-        //         console.log(`New vet added to database: ${newVet}`)
-        //     })
+        axios.post(BASE_URL + '/vets', newVet)
+            .then((res) => {
+                // FIXME - Need to implement?
+                // Need to incorporate the returned _id into the current list force a 
+                // componentDidMount
+                console.log(`Received response from server: ${JSON.stringify(res)}`)
+            })
+            .catch((err) => {
+                console.error(`Problem adding new vet to backend database: ${err}`)
+            })
+            .finally(() => {
+                console.log(`New vet added to database: ${JSON.stringify(newVet)}`)
+            })
     }
 
     onClick = (pageNumber) => {
@@ -95,6 +97,7 @@ export default class Vets extends React.Component {
                     total={this.state.totalPages}
                     delta={3}
                     onChange={this.onClick}
+                    size="small"
                 />
                 <NewVetForm modal={{closeOnBlur: true, showClose: true }} handleNewVet={this.handleNewVet}/>
                 <VetGrid 

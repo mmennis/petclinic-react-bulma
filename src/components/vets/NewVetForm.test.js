@@ -17,13 +17,91 @@ const testVet = {
 
 describe('NewVetForm', () => {
 
+    let handleNewVetCallback
+
+    beforeEach(() => {
+        handleNewVetCallback = jest.fn()
+    })
+
     afterEach(() => {
         jest.clearAllMocks()
     })
 
     it('should render as per the snapshot', () => {
-        const callback = jest.fn()
-        const newVetForm = create(<NewVetForm handleNewVet={callback} />)
+        const newVetForm = create(<NewVetForm handleNewVet={handleNewVetCallback} />)
         expect(newVetForm.toJSON()).toMatchSnapshot()
     })
+
+    describe('modal form', () => {
+
+        beforeEach(() => {
+            handleNewVetCallback = jest.fn()
+        })
+
+        it('should be invisible before new vet button is clicked ', () => {
+            const { queryByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            expect(queryByTestId('first-name-input')).toBeNull()
+        })
+    
+        it('should become visable once the modal button has been clicked', () => {
+            const { queryByTestId, getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(queryByTestId('first-name-input')).not.toBeNull()
+        })
+
+        it('should make the modal form invisable once the cancel button has been clicked', () => {
+            const { queryByTestId, getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(queryByTestId('first-name-input')).not.toBeNull()
+            fireEvent.click(getByTestId('cancel-button'))
+            expect(queryByTestId('first-name-input')).toBeNull()
+        })
+    })
+
+    describe('data entry form', () => {
+
+        beforeEach(() => {
+            handleNewVetCallback = jest.fn()
+            
+        })
+
+        it('should disable the Add Vet button if fields are empty', () => {
+            const { queryByTestId, getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(getByTestId('add-vet-button').disabled).toBe(true)
+        })
+
+        it('should enable the Add Vet button if all fields have values', () => {
+            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+            fireEvent.change(getByTestId("last-name-input"), { target: { value: testVet.last_name}})
+            fireEvent.change(getByTestId("specialty-input"), { target: { value: testVet.specialty}})
+            fireEvent.change(getByTestId("office-hours-input"), { target: { value: testVet.office_hours}})
+            fireEvent.change(getByTestId("address-input"), { target: { value: testVet.address}})
+            fireEvent.change(getByTestId("city-input"), { target: { value: testVet.city}})
+            fireEvent.change(getByTestId("state-input"), { target: { value: testVet.state}})
+            fireEvent.change(getByTestId("telephone-input"), { target: { value: testVet.telephone}})
+            expect(getByTestId('add-vet-button').disabled).toBe(false)
+        })
+
+        it('should disnable the Add Vet button if all fields have values but on is reverted', () => {
+            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(getByTestId('add-vet-button').disabled).toBe(true)
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+            fireEvent.change(getByTestId("last-name-input"), { target: { value: testVet.last_name}})
+            fireEvent.change(getByTestId("specialty-input"), { target: { value: testVet.specialty}})
+            fireEvent.change(getByTestId("office-hours-input"), { target: { value: testVet.office_hours}})
+            fireEvent.change(getByTestId("address-input"), { target: { value: testVet.address}})
+            fireEvent.change(getByTestId("city-input"), { target: { value: testVet.city}})
+            fireEvent.change(getByTestId("state-input"), { target: { value: testVet.state}})
+            fireEvent.change(getByTestId("telephone-input"), { target: { value: testVet.telephone}})
+            expect(getByTestId('add-vet-button').disabled).toBe(false)
+            fireEvent.change(getByTestId("telephone-input"), { target: { value: ''}})
+            expect(getByTestId('add-vet-button').disabled).toBe(true)
+        })
+
+    })
+
 })
