@@ -4,7 +4,6 @@ import { render, fireEvent } from '@testing-library/react'
 import NewVetForm from './NewVetForm'
 
 const testVet = {
-    _id: '123456ABCD',
     first_name: 'First',
     last_name: 'Last',
     office_hours: '8:00 AM - 5:00 PM',
@@ -62,11 +61,10 @@ describe('NewVetForm', () => {
 
         beforeEach(() => {
             handleNewVetCallback = jest.fn()
-            
         })
 
         it('should disable the Add Vet button if fields are empty', () => {
-            const { queryByTestId, getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
             fireEvent.click(getByTestId('modal-open'))
             expect(getByTestId('add-vet-button').disabled).toBe(true)
         })
@@ -100,6 +98,23 @@ describe('NewVetForm', () => {
             expect(getByTestId('add-vet-button').disabled).toBe(false)
             fireEvent.change(getByTestId("telephone-input"), { target: { value: ''}})
             expect(getByTestId('add-vet-button').disabled).toBe(true)
+        })
+
+        it('should call the handleNewVet callback if add-vet button is clicked', () => {
+            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+            fireEvent.change(getByTestId("last-name-input"), { target: { value: testVet.last_name}})
+            fireEvent.change(getByTestId("specialty-input"), { target: { value: testVet.specialty}})
+            fireEvent.change(getByTestId("office-hours-input"), { target: { value: testVet.office_hours}})
+            fireEvent.change(getByTestId("address-input"), { target: { value: testVet.address}})
+            fireEvent.change(getByTestId("city-input"), { target: { value: testVet.city}})
+            fireEvent.change(getByTestId("state-input"), { target: { value: testVet.state}})
+            fireEvent.change(getByTestId("telephone-input"), { target: { value: testVet.telephone}})
+            expect(getByTestId('add-vet-button').disabled).toBe(false)
+            fireEvent.click(getByTestId('add-vet-button'))
+            expect(handleNewVetCallback).toHaveBeenCalledTimes(1)
+            expect(handleNewVetCallback).toHaveBeenCalledWith(testVet)
         })
 
     })
