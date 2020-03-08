@@ -117,6 +117,28 @@ describe('NewVetForm', () => {
             expect(handleNewVetCallback).toHaveBeenCalledWith(testVet)
         })
 
+        it('should show an error if the first name is edited and then cleared', () => {
+            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+            expect(getByTestId('first-name-error').firstChild).toBeNull()
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: ''}})
+            expect(getByTestId('first-name-error').firstChild).not.toBeNull()
+            expect(getByTestId('first-name-error').firstChild).toMatchInlineSnapshot('First name must have a value')
+        })
+
+        it('should clear error if the first name is edited and then cleared and fixed', () => {
+            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+            expect(getByTestId('first-name-error').firstChild).toBeNull()
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: ''}})
+            expect(getByTestId('first-name-error').firstChild).not.toBeNull()
+            expect(getByTestId('first-name-error').firstChild).toMatchInlineSnapshot('First name must have a value')
+            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+            expect(getByTestId('first-name-error').firstChild).toBeNull()
+        })
+
     })
 
 })

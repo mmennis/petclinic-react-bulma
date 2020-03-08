@@ -152,7 +152,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="first-name-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={ errorStyle }>{this.state.errors.first_name}</Form.Help>
+                                    <Form.Help color="danger" style={ errorStyle } data-testid="first-name-error">{this.state.errors.first_name}</Form.Help>
                                 </Form.Field>
                                 <Form.Field style={ fieldStyle} marginless={false} horizontal={true}>
                                     <Form.Label style={ labelStyle }>Last name:</Form.Label>
