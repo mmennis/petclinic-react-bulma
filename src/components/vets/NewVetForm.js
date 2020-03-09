@@ -3,11 +3,11 @@ import { Modal, Form, Button, Content, Heading } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 
 const fieldStyle = {
-
 }
 
 const labelStyle = {
-
+    'width': '20%',
+    'marginBottom': '0'
 }
 
 const errorStyle = {
