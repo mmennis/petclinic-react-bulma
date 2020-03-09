@@ -22,7 +22,7 @@ exports[`FilterFormState should render as per the snapshot 1`] = `
           </label>
         </div>
         <div
-          className="tile is-3"
+          className="tile is-2"
         >
           <div
             className="control"
@@ -53,7 +53,7 @@ exports[`FilterFormState should render as per the snapshot 1`] = `
               tabIndex={0}
               type="submit"
             >
-              Submit
+              Apply Filter
             </button>
           </div>
         </div>
