@@ -117,28 +117,61 @@ describe('NewVetForm', () => {
             expect(handleNewVetCallback).toHaveBeenCalledWith(testVet)
         })
 
-        it('should show an error if the first name is edited and then cleared', () => {
-            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
-            fireEvent.click(getByTestId('modal-open'))
-            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
-            expect(getByTestId('first-name-error').firstChild).toBeNull()
-            fireEvent.change(getByTestId("first-name-input"), { target: { value: ''}})
-            expect(getByTestId('first-name-error').firstChild).not.toBeNull()
-            expect(getByTestId('first-name-error').firstChild).toMatchInlineSnapshot('First name must have a value')
-        })
-
-        it('should clear error if the first name is edited and then cleared and fixed', () => {
-            const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
-            fireEvent.click(getByTestId('modal-open'))
-            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
-            expect(getByTestId('first-name-error').firstChild).toBeNull()
-            fireEvent.change(getByTestId("first-name-input"), { target: { value: ''}})
-            expect(getByTestId('first-name-error').firstChild).not.toBeNull()
-            expect(getByTestId('first-name-error').firstChild).toMatchInlineSnapshot('First name must have a value')
-            fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
-            expect(getByTestId('first-name-error').firstChild).toBeNull()
-        })
-
+        const cases = [
+            ['first-name-input', 'first-name-error', 'First name must have a value'],
+            ['last-name-input', 'last-name-error', 'Last name must have a value'],
+            ['specialty-input', 'specialty-error', 'Specialty must have a value'],
+            ['office-hours-input', 'office-hours-error', 'Office Hours required'],
+            ['address-input', 'address-error', 'Street Addr. must have a value'],
+            ['city-input', 'city-error', 'City must have a value'],
+            ['state-input', 'state-error', 'State must have a value'],
+            ['telephone-input', 'telephone-error', 'Telephone number must be present'],
+        ]
+        test.each(cases)(
+            'should if %s is cleared show an error in %s like this %s', (inputField, errorField, errorMsg) => {
+                const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+                fireEvent.click(getByTestId('modal-open'))
+                fireEvent.change(getByTestId(inputField), { target: { value: testVet.first_name}})
+                expect(getByTestId(errorField).firstChild).toBeNull()
+                fireEvent.change(getByTestId(inputField), { target: { value: ''}})
+                expect(getByTestId(errorField).firstChild).not.toBeNull()
+                expect(getByTestId(errorField).firstChild).toMatchInlineSnapshot(errorMsg)
+            }
+        )
+        test.each(cases)(
+            'should if %s is re-entered remove the error in %s like this: %s ',(inputField, errorField, errorMsg) => {
+                const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+                fireEvent.click(getByTestId('modal-open'))
+                fireEvent.change(getByTestId(inputField), { target: { value: testVet.first_name}})
+                expect(getByTestId(errorField).firstChild).toBeNull()
+                fireEvent.change(getByTestId(inputField), { target: { value: ''}})
+                expect(getByTestId(errorField).firstChild).not.toBeNull()
+                expect(getByTestId(errorField).firstChild).toMatchInlineSnapshot(errorMsg)
+                fireEvent.change(getByTestId(inputField), { target: { value: testVet.first_name}})
+                expect(getByTestId(errorField).firstChild).toBeNull()
+            }
+        )
+        test.each(cases)(
+            'should disable the submit button if %s is cleared and error field % should be %s', 
+                (inputField, errorField, errorMsg) => {
+                    const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
+                    fireEvent.click(getByTestId('modal-open'))
+                    expect(getByTestId('add-vet-button').disabled).toBe(true)
+                    fireEvent.change(getByTestId("first-name-input"), { target: { value: testVet.first_name}})
+                    fireEvent.change(getByTestId("last-name-input"), { target: { value: testVet.last_name}})
+                    fireEvent.change(getByTestId("specialty-input"), { target: { value: testVet.specialty}})
+                    fireEvent.change(getByTestId("office-hours-input"), { target: { value: testVet.office_hours}})
+                    fireEvent.change(getByTestId("address-input"), { target: { value: testVet.address}})
+                    fireEvent.change(getByTestId("city-input"), { target: { value: testVet.city}})
+                    fireEvent.change(getByTestId("state-input"), { target: { value: testVet.state}})
+                    fireEvent.change(getByTestId("telephone-input"), { target: { value: testVet.telephone}})
+                    expect(getByTestId('add-vet-button').disabled).toBe(false)
+                    fireEvent.change(getByTestId(inputField), { target: { value: ''}})
+                    expect(getByTestId(errorField).firstChild).not.toBeNull()
+                    expect(getByTestId(errorField).firstChild).toMatchInlineSnapshot(errorMsg)
+                    expect(getByTestId('add-vet-button').disabled).toBe(true)   
+                }
+        )
     })
 
 })

@@ -166,7 +166,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="last-name-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.last_name}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="last-name-error">{this.state.errors.last_name}</Form.Help>
                                 </Form.Field>
                                 <Form.Field style={fieldStyle} marginless={false} horizontal={true}>
                                     <Form.Label style={labelStyle}>Specialty:</Form.Label>
@@ -180,7 +180,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="specialty-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.specialty}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="specialty-error">{this.state.errors.specialty}</Form.Help>
                                 </Form.Field>
                                 <Form.Field style={fieldStyle} marginless={false} horizontal={true}>
                                     <Form.Label style={labelStyle}>Office Hours:</Form.Label>
@@ -194,7 +194,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="office-hours-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.office_hours}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="office-hours-error">{this.state.errors.office_hours}</Form.Help>
                                 </Form.Field>
                                 <Heading size={3}>Home Address</Heading>
                                 <Form.Field style={fieldStyle} marginless={false} horizontal={true}>
@@ -209,7 +209,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="address-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.address}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="address-error">{this.state.errors.address}</Form.Help>
                                 </Form.Field>
                                 <Form.Field style={fieldStyle} marginless={false} horizontal={true}>
                                     <Form.Label style={labelStyle}>City:</Form.Label>
@@ -223,7 +223,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="city-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.city}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="city-error">{this.state.errors.city}</Form.Help>
                                 </Form.Field>
                                 <Form.Field style={fieldStyle} marginless={false} horizontal={true}>
                                     <Form.Label style={labelStyle}>State:</Form.Label>
@@ -237,7 +237,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="state-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.state}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="state-error">{this.state.errors.state}</Form.Help>
                                 </Form.Field>
                                 <Form.Field style={fieldStyle} marginless={false} horizontal={true}>
                                     <Form.Label style={labelStyle}>Telephone:</Form.Label>
@@ -251,7 +251,7 @@ export default class NewVetForm extends React.Component {
                                             data-testid="telephone-input"
                                         />
                                     </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.telephone}</Form.Help>
+                                    <Form.Help color="danger" style={errorStyle} data-testid="telephone-error">{this.state.errors.telephone}</Form.Help>
                                 </Form.Field>                                
                             </Content>
                         </Modal.Card.Body>
