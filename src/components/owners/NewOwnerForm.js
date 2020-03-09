@@ -7,10 +7,11 @@ const fieldStyle = {
 }
 
 const labelStyle = {
+    'width': '20%'
 }
 
 const errorStyle = {
-
+    'marginLeft': '10px'
 }
 const resetTouched = {
     first_name: false,
@@ -36,21 +37,205 @@ export default class NewOwnerForm extends React.Component {
 
         this.open = this.open.bind(this)
         this.close = this.close.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleFieldChange = this.handleFieldChange.bind(this)
+        this.validateFieldData = this.validateFieldData.bind(this)
+        this.isIncomplete = this.isIncomplete.bind(this)
     }
 
     open = () => this.setState({ show: true })
-    close = () => this.setState({ show: false, newVet: {}, errors: {}, touched: {...resetTouched}, incomplete: true })
+    close = () => this.setState({ show: false, newOwner: {}, errors: {}, touched: {...resetTouched}, incomplete: true })
+
+    handleSubmit = () => {
+        if(!this.isIncomplete()) {
+            this.props.handleNewOwner(this.state.newOwner)
+            this.close()
+        } else {
+            console.error(`This should be unreachable`)
+        }
+    }
+
+    handleFieldChange = (e) => {
+        e.preventDefault()
+        const { name, value } = e.target
+        const ownerData = { ...this.state.newOwner}
+        ownerData[name] = value
+        this.setState({
+            newOwner: {...ownerData}
+        }, () => {
+            this.validateFieldData(name, value)
+        })        
+    }
+
+    validateFieldData = (name, value) => {
+        const errors = this.state.errors
+        const touched = this.state.touched
+        switch(name) {
+            case 'first_name':
+                touched.first_name = true
+                errors.first_name = (value === '') ? 'First name must have a value' : null
+                break
+            case 'last_name':
+                touched.last_name = true
+                errors.last_name = (value === '') ? 'Last name must have a value' : null
+                break
+            case 'address':
+                touched.address = true
+                errors.address = (value === '') ? 'Street Addr. must have a value' : null
+                break
+            case 'city':
+                touched.city = true
+                errors.city = (value === '') ? 'City must have a value' : null
+                break
+            case 'state':
+                touched.state = true
+                errors.state = (value === '') ? 'State must have a value' : null
+                break
+            case 'telephone':
+                touched.telephone = true
+                errors.telephone = (value === '') ? 'Telephone number must have a value' : null
+                break
+            default:
+                console.log(`Unrecognized field ${name}`)
+                break
+        }
+        this.setState({
+            errors,
+            touched,
+        })
+        this.setState({
+            incomplete: this.isIncomplete()
+        })
+    }
+
+    isIncomplete = () => {
+        if (Object.keys(this.state.touched).every(x => this.state.touched[x])) {
+            return (Object.keys(this.state.errors).some(x => this.state.errors[x])) 
+        }
+        return true
+    }
 
     render() {
         return (
-            <div>
+            <div style={ { 'marginTop': '20px', 'marginLeft' : '25px' } }>
                 <Button onClick={this.open} size="small" data-testid="modal-open" color="primary">
                     New Owner
                 </Button>
-                <form data-testid="form">
+                <form data-testid="form" onSubmit={this.handleSubmit}>
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>
-                            
+                            <Modal.Card.Head onClose={this.close}>
+                                <Modal.Card.Title>Create A New Pet Owner ...</Modal.Card.Title>
+                            </Modal.Card.Head>
+                            <Modal.Card.Body>
+                                <Content>
+                                    <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
+                                        <Form.Label style={labelStyle}>First name:</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name='first_name'
+                                                type="text"
+                                                placeholder="First name"
+                                                value={this.state.newOwner.first_name}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="first-name-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle} data-testid="first-name-error">
+                                            {this.state.errors.first_name}
+                                        </Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
+                                        <Form.Label style={labelStyle}>Last name:</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name='last_name'
+                                                type="text"
+                                                placeholder="Last name"
+                                                value={this.state.newOwner.last_name}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="last-name-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle} data-testid="last-name-error">
+                                            {this.state.errors.last_name}
+                                        </Form.Help>
+                                    </Form.Field>
+                                    <Heading size={4}>Home Address</Heading>
+                                    <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
+                                        <Form.Label style={labelStyle}>Street Addr:</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name='address'
+                                                type="text"
+                                                placeholder="Street Addr"
+                                                value={this.state.newOwner.address}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="address-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle} data-testid="address-error">
+                                            {this.state.errors.address}
+                                        </Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
+                                        <Form.Label style={labelStyle}>City:</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name='city'
+                                                type="text"
+                                                placeholder="City"
+                                                value={this.state.newOwner.city}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="city-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle} data-testid="city-error">
+                                            {this.state.errors.city}
+                                        </Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
+                                        <Form.Label style={labelStyle}>State:</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name='state'
+                                                type="text"
+                                                placeholder="State"
+                                                value={this.state.newOwner.state}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="state-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle} data-testid="state-error">
+                                            {this.state.errors.state}
+                                        </Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
+                                        <Form.Label style={labelStyle}>Telephone:</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name='telephone'
+                                                type="text"
+                                                placeholder="Telephone"
+                                                value={this.state.newOwner.telephone}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="telephone-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle} data-testid="telephone-error">
+                                            {this.state.errors.telephone}
+                                        </Form.Help>
+                                    </Form.Field>
+                                </Content>
+                            </Modal.Card.Body>
+                            <Modal.Card.Foot>
+                                <Button type="submit" onClick={this.handleSubmit} color="primary" size="small" data-testid="add-owner-button" disabled={this.state.incomplete}>
+                                    Add Owner
+                                </Button>
+                                <Button type="cancel" onClick={this.close} size="small" color="warning" data-testid="cancel-button">
+                                    Cancel
+                                </Button>
+                            </Modal.Card.Foot>
                         </Modal.Card>
                     </Modal>
                 </form>

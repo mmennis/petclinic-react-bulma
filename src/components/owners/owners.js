@@ -5,6 +5,7 @@ import axios from 'axios'
 import OwnerGrid from './OwnerGrid'
 import { Section, Pagination } from 'react-bulma-components'
 import FilterFormState from '../FilterFormState'
+import NewOwnerForm from './NewOwnerForm'
 
 const BASE_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
 const OWNERS_PER_PAGE = 20;
@@ -62,6 +63,11 @@ export default class Owners extends React.Component {
 
     }
 
+    handleNewOwner = (newOwner) => {
+        // TODO
+        console.log(`Owners page received new owner callback ${JSON.stringify(newOwner)}`)
+    }
+
     render() {
         this.state.filteredOwners.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1)
 
@@ -77,6 +83,7 @@ export default class Owners extends React.Component {
                     onChange={this.onClick}
                     size="small"
                 />
+                <NewOwnerForm handleNewOwner={this.handleNewOwner} modal={{closeOnBlur: true, showClose: true }} />
                 <OwnerGrid 
                     owners={gridOwners} 
                 />
