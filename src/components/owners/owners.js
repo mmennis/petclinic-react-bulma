@@ -64,8 +64,6 @@ export default class Owners extends React.Component {
     }
 
     handleNewOwner = (newOwner) => {
-        // TODO
-        console.log(`Owners page received new owner callback ${JSON.stringify(newOwner)}`)
         axios.post(BASE_URL + '/owners', newOwner)
             .then((response) => {
                 // FIXME
