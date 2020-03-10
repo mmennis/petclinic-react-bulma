@@ -66,6 +66,20 @@ export default class Owners extends React.Component {
     handleNewOwner = (newOwner) => {
         // TODO
         console.log(`Owners page received new owner callback ${JSON.stringify(newOwner)}`)
+        axios.post(BASE_URL + '/owners', newOwner)
+            .then((response) => {
+                // FIXME
+                // This needs to update teh state in oredr to display new owner
+                // console.log(`Received response: ${JSON.stringify(response)}`)
+                console.log(`Ad owner message: ${response.data.msg}`)
+                console.log(`New owner idL ${response.data.id}`)
+            })
+            .catch((error) => {
+                console.error(`Problem adding new owner to backend DB ${error}`)
+            })
+            .finally(() => {
+                console.log('New owner added to the backend')
+            })
     }
 
     render() {
