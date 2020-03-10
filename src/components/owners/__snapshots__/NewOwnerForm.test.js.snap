@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewOwnerForm should render as per the snapshot 1`] = `
+<div
+  style={
+    Object {
+      "marginLeft": "25px",
+      "marginTop": "20px",
+    }
+  }
+>
+  <button
+    className="is-primary is-small button"
+    data-testid="modal-open"
+    disabled={false}
+    onClick={[Function]}
+    tabIndex={0}
+  >
+    New Owner
+  </button>
+  <form
+    data-testid="form"
+    onSubmit={[Function]}
+  />
+</div>
+`;

@@ -83,7 +83,7 @@ describe('NewVetForm', () => {
             expect(getByTestId('add-vet-button').disabled).toBe(false)
         })
 
-        it('should disnable the Add Vet button if all fields have values but on is reverted', () => {
+        it('should disable the Add Vet button if all fields have values but on is reverted', () => {
             const { getByTestId } = render(<NewVetForm handleNewVet={handleNewVetCallback} />)
             fireEvent.click(getByTestId('modal-open'))
             expect(getByTestId('add-vet-button').disabled).toBe(true)
