@@ -5,7 +5,7 @@ import { data } from './owers.localisation.data'
 import LocalizedStrings from 'react-localization'
 
 const strings = new LocalizedStrings(data)
-strings.setLanguage('es')
+//strings.setLanguage('es')
 
 const fieldStyle = {
 }
