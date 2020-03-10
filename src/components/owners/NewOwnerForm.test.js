@@ -29,4 +29,32 @@ describe('NewOwnerForm', () => {
         expect(newOwnerForm.toJSON()).toMatchSnapshot()
     })
 
+    describe('modal form', () => {
+
+        beforeEach(() => {
+            handleNewOwnerCallback = jest.fn()
+        })
+
+        it('should be invisible before the new owner buttong is clicked', () => {
+            const { queryByTestId } = render(<NewOwnerForm handleNewOwner={handleNewOwnerCallback} />)
+            expect(queryByTestId('first-name-input')).toBeNull()
+        })
+
+        it('should become visible when the new owner is clicked', () => {
+            const { queryByTestId, getByTestId } = render(<NewOwnerForm handleNewOwner={handleNewOwnerCallback} />)
+            expect(queryByTestId('first-name-input')).toBeNull()
+            fireEvent.click(getByTestId('modal-open'))
+            expect(queryByTestId('first-name-input')).not.toBeNull()
+        })
+
+        it('should make the modal invisible again is cancel button is clicked', () => {
+            const { queryByTestId, getByTestId } = render(<NewOwnerForm handleNewOwner={handleNewOwnerCallback} />)
+            expect(queryByTestId('first-name-input')).toBeNull()
+            fireEvent.click(getByTestId('modal-open'))
+            expect(queryByTestId('first-name-input')).not.toBeNull()
+            fireEvent.click(getByTestId('cancel-button'))
+            expect(queryByTestId('first-name-input')).toBeNull()
+        })
+    })
+
 })
