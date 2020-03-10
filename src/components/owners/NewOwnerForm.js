@@ -93,7 +93,7 @@ export default class NewOwnerForm extends React.Component {
                 break
             case 'telephone':
                 touched.telephone = true
-                errors.telephone = (value === '') ? 'Telephone number must have a value' : null
+                errors.telephone = (value === '') ? 'Telephone number must be present' : null
                 break
             default:
                 console.log(`Unrecognized field ${name}`)
