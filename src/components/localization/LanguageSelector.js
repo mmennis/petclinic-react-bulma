@@ -8,7 +8,7 @@ export default class LanguageSelector extends React.Component {
         return(
             <LanguageContext.Consumer>
                 { value => (
-                    <select defaultValue={value.lang} onChange={value.updateLocale}>
+                    <select defaultValue={value.lang} onChange={value.updateLocale} data-testid="select">
                         <option value="en">
                             English
                         </option>
