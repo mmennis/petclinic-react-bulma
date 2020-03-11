@@ -1,7 +1,11 @@
 import React from 'react'
 import { Modal, Form, Button, Content, Heading } from 'react-bulma-components'
 import PropTypes from 'prop-types'
+import { data } from './owers.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
 
+const strings = new LocalizedStrings(data)
 
 const fieldStyle = {
 }
@@ -73,27 +77,27 @@ export default class NewOwnerForm extends React.Component {
         switch(name) {
             case 'first_name':
                 touched.first_name = true
-                errors.first_name = (value === '') ? 'First name must have a value' : null
+                errors.first_name = (value === '') ? strings.errors.first_name : null
                 break
             case 'last_name':
                 touched.last_name = true
-                errors.last_name = (value === '') ? 'Last name must have a value' : null
+                errors.last_name = (value === '') ? strings.errors.last_name : null
                 break
             case 'address':
                 touched.address = true
-                errors.address = (value === '') ? 'Street Addr. must have a value' : null
+                errors.address = (value === '') ? strings.errors.address : null
                 break
             case 'city':
                 touched.city = true
-                errors.city = (value === '') ? 'City must have a value' : null
+                errors.city = (value === '') ? strings.errors.city : null
                 break
             case 'state':
                 touched.state = true
-                errors.state = (value === '') ? 'State must have a value' : null
+                errors.state = (value === '') ? strings.errors.state : null
                 break
             case 'telephone':
                 touched.telephone = true
-                errors.telephone = (value === '') ? 'Telephone number must be present' : null
+                errors.telephone = (value === '') ? strings.errors.telephone : null
                 break
             default:
                 console.log(`Unrecognized field ${name}`)
@@ -116,26 +120,28 @@ export default class NewOwnerForm extends React.Component {
     }
 
     render() {
+        let localeContext = this.context
+        strings.setLanguage(localeContext.lang)
         return (
             <div style={ { 'marginTop': '20px', 'marginLeft' : '25px' } }>
                 <Button onClick={this.open} size="small" data-testid="modal-open" color="primary">
-                    New Owner
+                    {strings.new_owner_button}
                 </Button>
                 <form data-testid="form" onSubmit={this.handleSubmit}>
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>
                             <Modal.Card.Head onClose={this.close}>
-                                <Modal.Card.Title>Create A New Pet Owner ...</Modal.Card.Title>
+                                <Modal.Card.Title>{strings.title}</Modal.Card.Title>
                             </Modal.Card.Head>
                             <Modal.Card.Body>
                                 <Content>
                                     <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
-                                        <Form.Label style={labelStyle}>First name:</Form.Label>
+                                        <Form.Label style={labelStyle}>{strings.fields.first_name}:</Form.Label>
                                         <Form.Control>
                                             <Form.Input 
                                                 name='first_name'
                                                 type="text"
-                                                placeholder="First name"
+                                                placeholder={strings.fields.first_name}
                                                 value={this.state.newOwner.first_name}
                                                 onChange={this.handleFieldChange}
                                                 data-testid="first-name-input"
@@ -146,12 +152,12 @@ export default class NewOwnerForm extends React.Component {
                                         </Form.Help>
                                     </Form.Field>
                                     <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
-                                        <Form.Label style={labelStyle}>Last name:</Form.Label>
+                                        <Form.Label style={labelStyle}>{strings.fields.last_name}:</Form.Label>
                                         <Form.Control>
                                             <Form.Input 
                                                 name='last_name'
                                                 type="text"
-                                                placeholder="Last name"
+                                                placeholder={strings.fields.last_name}
                                                 value={this.state.newOwner.last_name}
                                                 onChange={this.handleFieldChange}
                                                 data-testid="last-name-input"
@@ -161,14 +167,14 @@ export default class NewOwnerForm extends React.Component {
                                             {this.state.errors.last_name}
                                         </Form.Help>
                                     </Form.Field>
-                                    <Heading size={4}>Home Address</Heading>
+                                    <Heading size={4}>{strings.address_heading}</Heading>
                                     <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
-                                        <Form.Label style={labelStyle}>Street Addr:</Form.Label>
+                                        <Form.Label style={labelStyle}>{strings.fields.address}:</Form.Label>
                                         <Form.Control>
                                             <Form.Input 
                                                 name='address'
                                                 type="text"
-                                                placeholder="Street Addr"
+                                                placeholder={strings.fields.address}
                                                 value={this.state.newOwner.address}
                                                 onChange={this.handleFieldChange}
                                                 data-testid="address-input"
@@ -179,12 +185,12 @@ export default class NewOwnerForm extends React.Component {
                                         </Form.Help>
                                     </Form.Field>
                                     <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
-                                        <Form.Label style={labelStyle}>City:</Form.Label>
+                                        <Form.Label style={labelStyle}>{strings.fields.city}:</Form.Label>
                                         <Form.Control>
                                             <Form.Input 
                                                 name='city'
                                                 type="text"
-                                                placeholder="City"
+                                                placeholder={strings.fields.city}
                                                 value={this.state.newOwner.city}
                                                 onChange={this.handleFieldChange}
                                                 data-testid="city-input"
@@ -195,12 +201,12 @@ export default class NewOwnerForm extends React.Component {
                                         </Form.Help>
                                     </Form.Field>
                                     <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
-                                        <Form.Label style={labelStyle}>State:</Form.Label>
+                                        <Form.Label style={labelStyle}>{strings.fields.state}:</Form.Label>
                                         <Form.Control>
                                             <Form.Input 
                                                 name='state'
                                                 type="text"
-                                                placeholder="State"
+                                                placeholder={strings.fields.state}
                                                 value={this.state.newOwner.state}
                                                 onChange={this.handleFieldChange}
                                                 data-testid="state-input"
@@ -211,12 +217,12 @@ export default class NewOwnerForm extends React.Component {
                                         </Form.Help>
                                     </Form.Field>
                                     <Form.Field horizontal={true} marginless={false} style={fieldStyle}>
-                                        <Form.Label style={labelStyle}>Telephone:</Form.Label>
+                                        <Form.Label style={labelStyle}>{strings.fields.telephone}:</Form.Label>
                                         <Form.Control>
                                             <Form.Input 
                                                 name='telephone'
                                                 type="text"
-                                                placeholder="Telephone"
+                                                placeholder={strings.fields.telephone}
                                                 value={this.state.newOwner.telephone}
                                                 onChange={this.handleFieldChange}
                                                 data-testid="telephone-input"
@@ -230,10 +236,10 @@ export default class NewOwnerForm extends React.Component {
                             </Modal.Card.Body>
                             <Modal.Card.Foot>
                                 <Button type="submit" onClick={this.handleSubmit} color="primary" size="small" data-testid="add-owner-button" disabled={this.state.incomplete}>
-                                    Add Owner
+                                    {strings.add_button}
                                 </Button>
                                 <Button type="cancel" onClick={this.close} size="small" color="warning" data-testid="cancel-button">
-                                    Cancel
+                                    {strings.cancel_button}
                                 </Button>
                             </Modal.Card.Foot>
                         </Modal.Card>
@@ -243,6 +249,8 @@ export default class NewOwnerForm extends React.Component {
         )
     }
 }
+
+NewOwnerForm.contextType = LanguageContext
 
 NewOwnerForm.propTypes = {
     modal: PropTypes.object,
