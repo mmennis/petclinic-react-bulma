@@ -5,7 +5,7 @@ import Vets from './components/vets/vets'
 import Home from './components/Home'
 import { Section, Hero, Container, Heading, Navbar } from 'react-bulma-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { locales, LanguageContext } from './components/localization/LanguageContext'
+import { LanguageContext } from './components/localization/LanguageContext'
 import LanguageSelector from './components/localization/LanguageSelector'
 
 class App extends React.Component {
@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props)
 
     this.updateLocale = (e) => {
-      const { name, value } = e.target
+      const { value } = e.target
       // console.log(`updatLocales was called with ${name} -> ${value}`)
       this.setState({
         lang: value,
