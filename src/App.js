@@ -37,7 +37,7 @@ class App extends React.Component {
               <Hero color="primary" gradient paddingless>
                 <Hero.Head renderAs="header">
                   <div style={ { 'position': 'absolute', 'right': 0 }}>
-                    Lang: <LanguageSelector />
+                    <LanguageSelector />
                   </div>
                 </Hero.Head>
                 <Hero.Body >
