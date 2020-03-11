@@ -2,6 +2,9 @@ import React from 'react'
 import { create } from 'react-test-renderer'
 import { render, fireEvent } from '@testing-library/react'
 import NewVetForm from './NewVetForm'
+import { data } from './vets.localisation.data'
+import LocalizedStrings from 'react-localization'
+const strings = new LocalizedStrings(data)
 
 const testVet = {
     first_name: 'First',
@@ -118,14 +121,14 @@ describe('NewVetForm', () => {
         })
 
         const cases = [
-            ['first-name-input', 'first-name-error', 'First name must have a value'],
-            ['last-name-input', 'last-name-error', 'Last name must have a value'],
-            ['specialty-input', 'specialty-error', 'Specialty must have a value'],
-            ['office-hours-input', 'office-hours-error', 'Office Hours required'],
-            ['address-input', 'address-error', 'Street Addr. must have a value'],
-            ['city-input', 'city-error', 'City must have a value'],
-            ['state-input', 'state-error', 'State must have a value'],
-            ['telephone-input', 'telephone-error', 'Telephone number must be present'],
+            ['first-name-input', 'first-name-error', strings.errors.first_name ],
+            ['last-name-input', 'last-name-error', strings.errors.last_name ],
+            ['specialty-input', 'specialty-error', strings.errors.specialty ],
+            ['office-hours-input', 'office-hours-error', strings.errors.office_hours ],
+            ['address-input', 'address-error', strings.errors.address ],
+            ['city-input', 'city-error', strings.errors.city ],
+            ['state-input', 'state-error', strings.errors.state ],
+            ['telephone-input', 'telephone-error', strings.errors.telephone],
         ]
         test.each(cases)(
             'should if %s is cleared show an error in %s like this %s', (inputField, errorField, errorMsg) => {
