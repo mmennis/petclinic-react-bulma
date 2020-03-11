@@ -3,9 +3,9 @@ import { Modal, Form, Button, Content, Heading } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 import { data } from './owers.localisation.data'
 import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
 
 const strings = new LocalizedStrings(data)
-//strings.setLanguage('es')
 
 const fieldStyle = {
 }
@@ -120,10 +120,12 @@ export default class NewOwnerForm extends React.Component {
     }
 
     render() {
+        let localeContext = this.context
+        strings.setLanguage(localeContext.lang)
         return (
             <div style={ { 'marginTop': '20px', 'marginLeft' : '25px' } }>
                 <Button onClick={this.open} size="small" data-testid="modal-open" color="primary">
-                    New Owner
+                    {strings.new_owner_button}
                 </Button>
                 <form data-testid="form" onSubmit={this.handleSubmit}>
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
@@ -247,6 +249,8 @@ export default class NewOwnerForm extends React.Component {
         )
     }
 }
+
+NewOwnerForm.contextType = LanguageContext
 
 NewOwnerForm.propTypes = {
     modal: PropTypes.object,

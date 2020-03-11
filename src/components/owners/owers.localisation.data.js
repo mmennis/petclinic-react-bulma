@@ -20,6 +20,7 @@ const data = {
         address_heading: 'Home Address',
         add_button: 'Add owner',
         cancel_button: 'Cancel',
+        new_owner_button: 'New Owner',
     },
     es: {
         fields: {
@@ -42,6 +43,30 @@ const data = {
         address_heading: 'Dirección completa',
         add_button: 'Añadir',
         cancel_button: 'Cancelar',
+        new_owner_button: 'Nuevo Dueño',
+    },
+    fr: {
+        fields: {
+            first_name: 'Prénom',
+            last_name: 'Nom de famille',
+            address: 'Adresse de rue',
+            city: 'Ville',
+            state: 'Etat',
+            telephone: 'Téléphone',
+        },
+        errors: {
+            first_name: 'Le prénom est requis',
+            last_name: 'Le nom de famille est obligatorie',
+            address: 'L\'adresse de la rue est nécessaire',
+            city: 'La ville est obligatorie',
+            state: 'L\'État doit être présent',
+            telephone: 'Le numéro de téléphone est requis',
+        },
+        title: 'Créer un nouveau propriétaire d\'animal de compagnie ...',
+        address_heading: 'Adresse du domicile',
+        add_button: 'Ajouter',
+        cancel_button: 'Annuler',
+        new_owner_button: 'Nouvelle cliente',
     }
 }
 
