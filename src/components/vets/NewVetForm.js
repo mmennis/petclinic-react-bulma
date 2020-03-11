@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Form, Button, Content, Heading } from 'react-bulma-components'
-import PropTypes, { string } from 'prop-types'
+import PropTypes from 'prop-types'
 import { data } from './vets.localisation.data'
 import LocalizedStrings from 'react-localization'
 import { LanguageContext } from '../localization/LanguageContext'
