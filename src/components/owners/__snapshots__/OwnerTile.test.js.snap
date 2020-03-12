@@ -54,6 +54,21 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
           Details
         </button>
       </div>
+      <div>
+        <button
+          className="is-small button"
+          data-testis="modal-open"
+          disabled={false}
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Edit
+        </button>
+        <form
+          data-testid="form"
+          onSubmit={[Function]}
+        />
+      </div>
     </div>
   </div>
 </article>

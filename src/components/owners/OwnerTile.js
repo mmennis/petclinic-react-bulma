@@ -2,9 +2,23 @@ import React from 'react'
 import { Tile, Heading, Content, Card } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 import OwnersDetail from './OwnersDetail'
+import EditOwnerForm from './EditOwnerForm' 
 import Pluralize from 'react-pluralize'
 
 export default class OwnerTile extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state ={
+            updated: false
+        }
+        this.handleOwnerUpdate = this.handleOwnerUpdate.bind(this)
+    }
+
+    handleOwnerUpdate = (owner) => {
+        console.log(`Received an updated owner: ${JSON.stringify(owner)}`)
+    }
 
     render() {
         return (
@@ -19,6 +33,11 @@ export default class OwnerTile extends React.Component {
                         </Content>
                         <Heading size={4} subtitle><Pluralize singular={'pet'} count={this.props.owner.pets.length}/></Heading>
                         <OwnersDetail owner={this.props.owner} modal={{closeOnBlur: true, showClose: true }}/>
+                        <EditOwnerForm 
+                            owner={this.props.owner} 
+                            handleOwnerUpdate={this.handleOwnerUpdate} 
+                            modal={{closeOnBlur: true, showClose: true }}
+                        />
                     </Card.Content>
                 </Card>                
             </Tile>
