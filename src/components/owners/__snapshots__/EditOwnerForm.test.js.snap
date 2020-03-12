@@ -9,7 +9,7 @@ exports[`EditOwnerForm should render as per the snapshot 1`] = `
     onClick={[Function]}
     tabIndex={0}
   >
-    Edit
+    Update
   </button>
   <form
     data-testid="form"

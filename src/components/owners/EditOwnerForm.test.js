@@ -59,4 +59,40 @@ describe('EditOwnerForm', () => {
         })
     })
 
+    describe('data entry form', () => {
+        beforeEach(() => {
+            handleOwnerCallback = jest.fn()
+        })
+
+        it('should diable the update button if an error is present', () => {
+            const { getByTestId } = render(<EditOwnerForm owner={testOwner} handleOwnerUpdate={handleOwnerCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(getByTestId('edit-button').disabled).toBe(false)
+            fireEvent.change(getByTestId('first-name-input'), { target: { value: ''}})
+            expect(getByTestId('edit-button').disabled).toBe(true)
+        })
+
+        it('should re-enable once a value has been entered in the empty field', () => {
+            const { getByTestId } = render(<EditOwnerForm owner={testOwner} handleOwnerUpdate={handleOwnerCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(getByTestId('edit-button').disabled).toBe(false)
+            fireEvent.change(getByTestId('first-name-input'), { target: { value: ''}})
+            expect(getByTestId('edit-button').disabled).toBe(true)
+            fireEvent.change(getByTestId('first-name-input'), { target: { value: 'test'}})
+            expect(getByTestId('edit-button').disabled).toBe(false)
+        })
+
+        it('closing the form should reset all the fields back to the cached data', () => {
+            const { queryByTestId, getByTestId } = render(<EditOwnerForm owner={testOwner} handleOwnerUpdate={handleOwnerCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            expect(getByTestId('edit-button').disabled).toBe(false)
+            fireEvent.change(getByTestId('first-name-input'), { target: { value: ''}})
+            expect(getByTestId('edit-button').disabled).toBe(true)
+            fireEvent.click(getByTestId('cancel-button'))
+            expect(queryByTestId('first-name-input')).toBeNull()
+            fireEvent.click(getByTestId('modal-open'))
+            expect(getByTestId('edit-button').disabled).toBe(false)
+        })
+    })
+
 })

@@ -23,11 +23,12 @@ export default class EditOwnerForm extends React.Component {
             show: false,
             errors: {},
             owner: { ...props.owner },
+            hasErrors: false,
         }
     }
 
     open = () => this.setState({ show: true })
-    close = () => this.setState({ show: false })
+    close = () => this.setState({ show: false, owner: {...this.props.owner}, errors: {}, hasErrors: false })
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -52,7 +53,6 @@ export default class EditOwnerForm extends React.Component {
     }
 
     validateFieldData = (name, value) => {
-        console.log(`Received upate to ${name} -> ${value}`)
         const errors = this.state.errors
         switch(name) {
             case 'first_name': 
@@ -64,12 +64,19 @@ export default class EditOwnerForm extends React.Component {
             case 'address':
                 errors.address = (value === '') ? strings.errors.address : null
                 break
+            case 'city':
+                errors.city = (value === '') ? strings.errors.city : null
+                break
+            case 'state':
+                errors.state = (value === '') ? strings.errors.state : null
+                break
             default:
                 console.log(`Unrecognized field "${name}"`)
                 break
         }
         this.setState({
-            errors
+            errors,
+            hasErrors: (Object.keys(this.state.errors).some(x => this.state.errors[x]))
         })
     }
 
@@ -132,12 +139,41 @@ export default class EditOwnerForm extends React.Component {
                                         </Form.Control>
                                         <Form.Help color="danger" style={errorStyle}>{this.state.errors.address}</Form.Help>
                                     </Form.Field>
-
+                                    <Form.Field horizontal={true} marginless={true}>
+                                        <Form.Label style={labelStyle}>{strings.fields.city}</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name="city"
+                                                type="text"
+                                                placeholder={strings.fields.city}
+                                                value={this.state.owner.city}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="city-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle}>{this.state.errors.city}</Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={true}>
+                                        <Form.Label style={labelStyle}>{strings.fields.state}</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name="state"
+                                                type="text"
+                                                placeholder={strings.fields.state}
+                                                value={this.state.owner.state}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="state-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle}>{this.state.errors.state}</Form.Help>
+                                    </Form.Field>
                                 </Content>
                             </Modal.Card.Body>
                             <Modal.Card.Foot>
-                                <Button type="submit" color="success" size="small" onClick={this.handleSubmit} data-testid="edit-button" rounded={true}>
-                                    {strings.edit_button}
+                                <Button type="submit" color="success" size="small" 
+                                    onClick={this.handleSubmit} data-testid="edit-button" 
+                                    rounded={true} disabled={this.state.hasErrors}>
+                                        {strings.edit_button}
                                 </Button>
                                 <Button type="cancel" color="danger" size="small" onClick={this.close} data-testid="cancel-button" rounded={true}>
                                     {strings.cancel_button}

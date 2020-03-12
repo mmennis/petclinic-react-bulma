@@ -20,7 +20,7 @@ const data = {
         address_heading: 'Home Address',
         add_button: 'Add owner',
         cancel_button: 'Cancel',
-        edit_button: 'Edit',
+        edit_button: 'Update',
         new_owner_button: 'New Owner',
     },
     es: {
@@ -44,7 +44,7 @@ const data = {
         address_heading: 'Dirección completa',
         add_button: 'Añadir',
         cancel_button: 'Cancelar',
-        edit_button: 'Editar',
+        edit_button: 'Actualizar',
         new_owner_button: 'Nuevo Dueño',
     },
     fr: {
