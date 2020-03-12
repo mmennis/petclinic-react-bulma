@@ -68,28 +68,28 @@ export default class EditVetForm extends React.Component {
         const errors = this.state.errors
         switch (name) {
             case 'specialty':    
-                errors.specialty = (value === '') ? 'Invalid: Specialty must have a value' : null
+                errors.specialty = (value === '') ? strings.errors.specialty : null
                 break
             case 'last_name':
-                errors.last_name = (value === '') ? 'Invalid: Last Name must have a value' : null
+                errors.last_name = (value === '') ? strings.errors.last_name : null
                 break
             case 'first_name':
-                errors.first_name = (value === '') ? 'Invalid: First Name must have a value' : null
+                errors.first_name = (value === '') ? strings.errors.first_name : null
                 break
             case 'address': 
-                errors.address = (value === '') ? "Invalid: Street Address must have a value" : null
+                errors.address = (value === '') ? strings.errors.address : null
                 break
             case 'city':
-                errors.city = (value === '') ? 'Invalid: City must have a value' : null
+                errors.city = (value === '') ? strings.errors.city : null
                 break
             case 'state':
-                errors.state = (value === '') ? 'Invalid: State must have a value' : null
+                errors.state = (value === '') ? strings.errors.state : null
                 break
             case 'telephone':
-                errors.telephone = (value === '') ? 'Invalid: Telephone number must be present' : null
+                errors.telephone = (value === '') ? strings.errors.telephone : null
                 break
             case 'office_hours':
-                errors.office_hours = (value === '') ? 'Invaid: Office hours must be provided' : null
+                errors.office_hours = (value === '') ? strings.errors.office_hours : null
                 break
             default:
                 break
@@ -104,7 +104,7 @@ export default class EditVetForm extends React.Component {
         strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small" data-testid="modal-open">Edit</Button>
+                <Button onClick={this.open} size="small" data-testid="modal-open">{strings.edit_button}</Button>
                 <form onSubmit={this.handleSubmit} data-testid="form">
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>

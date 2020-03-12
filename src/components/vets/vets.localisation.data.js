@@ -24,6 +24,7 @@ const data = {
         address_heading: 'Home Address',
         add_button: 'Add vet',
         cancel_button: 'Cancel',
+        edit_button: 'Update',
         new_vet_button: 'New Vet',
     },
     es: {
@@ -51,6 +52,7 @@ const data = {
         address_heading: 'Dirección completa',
         add_button: 'Añadir',
         cancel_button: 'Cancelar',
+        edit_button: 'Editar',
         new_vet_button: 'Nuevo veterinario',
     },
     fr: {
@@ -78,6 +80,7 @@ const data = {
         address_heading: 'Adresse du domicile',
         add_button: 'Ajouter',
         cancel_button: 'Annuler',
+        edit_button: 'Réviser',
         new_vet_button: 'Nouvelle vétérinaire',
     }
 }
