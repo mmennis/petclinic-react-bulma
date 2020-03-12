@@ -1,6 +1,11 @@
 import React from 'react'
 import { Button, Modal, Form, Media, Image, Content, Heading } from 'react-bulma-components'
 import PropTypes from 'prop-types'
+import { data } from './vets.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
+
+const strings = new LocalizedStrings(data)
 
 
 const fieldStyle = {
@@ -95,6 +100,8 @@ export default class EditVetForm extends React.Component {
     }
 
     render() {
+        let localeContext = this.context
+        strings.setLanguage(localeContext.lang)
         return (
             <div>
                 <Button onClick={this.open} size="small" data-testid="modal-open">Edit</Button>
@@ -248,6 +255,7 @@ export default class EditVetForm extends React.Component {
         )
     }
 }
+EditVetForm.contextType = LanguageContext
 
 EditVetForm.propTypes = {
     vet: PropTypes.object.isRequired,
