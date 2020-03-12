@@ -70,6 +70,9 @@ export default class EditOwnerForm extends React.Component {
             case 'state':
                 errors.state = (value === '') ? strings.errors.state : null
                 break
+            case 'telephone':
+                errors.telephone = (value === '') ? strings.errors.telephone : null
+                break
             default:
                 console.log(`Unrecognized field "${name}"`)
                 break
@@ -166,6 +169,20 @@ export default class EditOwnerForm extends React.Component {
                                             />
                                         </Form.Control>
                                         <Form.Help color="danger" style={errorStyle}>{this.state.errors.state}</Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={true}>
+                                        <Form.Label style={labelStyle}>{strings.fields.telephone}</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name="telephone"
+                                                type="text"
+                                                placeholder={strings.fields.telephone}
+                                                value={this.state.owner.telephone}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="telephone-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle}>{this.state.errors.telephone}</Form.Help>
                                     </Form.Field>
                                 </Content>
                             </Modal.Card.Body>
