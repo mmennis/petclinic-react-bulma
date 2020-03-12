@@ -11,7 +11,7 @@ export default class LanguageSelector extends React.Component {
                     <Form.Field horizontal={true}>
                         <Form.Label size="small">Lang:</Form.Label>
                         <Form.Control>
-                            <Form.Select size="small" value={value.lang} onChange={value.updateLocale} data-testid="select">
+                            <Form.Select size="small" color="primary" marginless={true} value={value.lang} onChange={value.updateLocale} data-testid="select">
                                 <option value="en">English</option>
                                 <option value="es">Espanol</option>
                                 <option value="fr">Francais</option>

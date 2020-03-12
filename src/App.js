@@ -12,20 +12,22 @@ class App extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.updateLocale = (e) => {
-      const { value } = e.target
-      // console.log(`updatLocales was called with ${name} -> ${value}`)
-      this.setState({
-        lang: value,
-      })
-    }
-
     this.state = {
-      lang: 'en',
+      lang:  JSON.parse(localStorage.getItem('petclinic-lang')) || 'en',
       updateLocale: this.updateLocale,
       activeNavbar: false,
     }
+
+    this.updateLocale = this.updateLocale.bind(this)
+  }
+
+  updateLocale = (e) => {
+    const { value } = e.target
+    this.setState({
+      lang: value,
+    }, () => {
+      localStorage.setItem('petclinic-lang', JSON.stringify(this.state.lang))
+    })
   }
 
   render() {
