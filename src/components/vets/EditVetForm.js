@@ -1,6 +1,11 @@
 import React from 'react'
 import { Button, Modal, Form, Media, Image, Content, Heading } from 'react-bulma-components'
 import PropTypes from 'prop-types'
+import { data } from './vets.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
+
+const strings = new LocalizedStrings(data)
 
 
 const fieldStyle = {
@@ -63,28 +68,28 @@ export default class EditVetForm extends React.Component {
         const errors = this.state.errors
         switch (name) {
             case 'specialty':    
-                errors.specialty = (value === '') ? 'Invalid: Specialty must have a value' : null
+                errors.specialty = (value === '') ? strings.errors.specialty : null
                 break
             case 'last_name':
-                errors.last_name = (value === '') ? 'Invalid: Last Name must have a value' : null
+                errors.last_name = (value === '') ? strings.errors.last_name : null
                 break
             case 'first_name':
-                errors.first_name = (value === '') ? 'Invalid: First Name must have a value' : null
+                errors.first_name = (value === '') ? strings.errors.first_name : null
                 break
             case 'address': 
-                errors.address = (value === '') ? "Invalid: Street Address must have a value" : null
+                errors.address = (value === '') ? strings.errors.address : null
                 break
             case 'city':
-                errors.city = (value === '') ? 'Invalid: City must have a value' : null
+                errors.city = (value === '') ? strings.errors.city : null
                 break
             case 'state':
-                errors.state = (value === '') ? 'Invalid: State must have a value' : null
+                errors.state = (value === '') ? strings.errors.state : null
                 break
             case 'telephone':
-                errors.telephone = (value === '') ? 'Invalid: Telephone number must be present' : null
+                errors.telephone = (value === '') ? strings.errors.telephone : null
                 break
             case 'office_hours':
-                errors.office_hours = (value === '') ? 'Invaid: Office hours must be provided' : null
+                errors.office_hours = (value === '') ? strings.errors.office_hours : null
                 break
             default:
                 break
@@ -95,9 +100,11 @@ export default class EditVetForm extends React.Component {
     }
 
     render() {
+        let localeContext = this.context
+        strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small" data-testid="modal-open">Edit</Button>
+                <Button onClick={this.open} size="small" data-testid="modal-open">{strings.edit_button}</Button>
                 <form onSubmit={this.handleSubmit} data-testid="form">
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>
@@ -106,12 +113,12 @@ export default class EditVetForm extends React.Component {
                             </Modal.Card.Head>
                             <Modal.Card.Body>
                                 <Form.Field horizontal={true} marginless={true}>
-                                    <Form.Label style={ fieldStyle }>First Name</Form.Label>
+                                    <Form.Label style={ fieldStyle }>{strings.fields.first_name}:</Form.Label>
                                     <Form.Control>
                                         <Form.Input 
                                             type="text" 
                                             name="first_name"
-                                            placeholder="First Name"
+                                            placeholder={strings.fields.first_name}
                                             value={this.state.vet.first_name} 
                                             onChange={this.handleFieldChange}
                                             data-testid="first-name-input"
@@ -120,12 +127,12 @@ export default class EditVetForm extends React.Component {
                                     <Form.Help color="danger" style={errorStyle}>{this.state.errors.first_name}</Form.Help>
                                 </Form.Field>
                                 <Form.Field horizontal={true} marginless={true}>
-                                    <Form.Label style={ fieldStyle }>Last Name</Form.Label>
+                                    <Form.Label style={ fieldStyle }>{strings.fields.last_name}</Form.Label>
                                     <Form.Control>
                                         <Form.Input 
                                             type="text" 
                                             name="last_name"
-                                            placeholder="Last Name" 
+                                            placeholder={strings.fields.last_name} 
                                             value={this.state.vet.last_name}
                                             onChange={this.handleFieldChange}
                                             data-testid="last-name-input"
@@ -140,14 +147,14 @@ export default class EditVetForm extends React.Component {
                                         </Media.Item>
                                         <Media.Item>
                                             <Content>
-                                                <Heading size={5} marginless={true}>Address</Heading>
+                                                <Heading size={5} marginless={true}>{strings.address_heading}</Heading>
                                                 <Form.Field horizontal={true} marginless={true}>
-                                                    <Form.Label style={ {"width": '50px',"marginRight": "20px", "marginTop": "8px"} }>Street</Form.Label>
+                                                    <Form.Label style={ {"width": '50px',"marginRight": "20px", "marginTop": "8px"} }>{strings.fields.address}</Form.Label>
                                                     <Form.Control>
                                                         <Form.Input 
                                                             type="text"
                                                             name="address"
-                                                            placeholder="street address"
+                                                            placeholder={strings.fields.address}
                                                             value={this.state.vet.address}
                                                             onChange={this.handleFieldChange}
                                                             data-testid="address-input"
@@ -156,12 +163,12 @@ export default class EditVetForm extends React.Component {
                                                     <Form.Help color="danger" style={errorStyle}>{this.state.errors.address}</Form.Help>
                                                 </Form.Field>
                                                 <Form.Field horizontal={true} marginless={true}>
-                                                    <Form.Label style={ {"width": '50px', "marginRight": "20px", "marginTop": "8px"} }>City</Form.Label>
+                                                    <Form.Label style={ {"width": '50px', "marginRight": "20px", "marginTop": "8px"} }>{strings.fields.city}</Form.Label>
                                                     <Form.Control>
                                                         <Form.Input 
                                                             type="text"
                                                             name="city"
-                                                            placeholder="city"
+                                                            placeholder={strings.fields.city}
                                                             value={this.state.vet.city}
                                                             onChange={this.handleFieldChange}
                                                             data-testid="city-input"
@@ -170,12 +177,12 @@ export default class EditVetForm extends React.Component {
                                                     <Form.Help color="danger" style={errorStyle}>{this.state.errors.city}</Form.Help>
                                                 </Form.Field> 
                                                 <Form.Field horizontal={true} marginless={true}>
-                                                    <Form.Label style={{ "width": '50px', "marginRight": "20px", "marginTop": "8px" }}>State</Form.Label>
+                                                    <Form.Label style={{ "width": '50px', "marginRight": "20px", "marginTop": "8px" }}>{strings.fields.state}</Form.Label>
                                                     <Form.Control>
                                                         <Form.Input 
                                                             type="text"
                                                             name="state"
-                                                            placeholder="state"
+                                                            placeholder={strings.fields.state}
                                                             value={this.state.vet.state}
                                                             onChange={this.handleFieldChange}
                                                             data-testid="state-input"
@@ -189,12 +196,12 @@ export default class EditVetForm extends React.Component {
                                 </Content>                            
                                     <Content>
                                         <Form.Field horizontal={true} marginless={true}>
-                                            <Form.Label style={fieldStyle}>Telephone</Form.Label>
+                                            <Form.Label style={fieldStyle}>{strings.fields.telephone}</Form.Label>
                                             <Form.Control>
                                                 <Form.Input 
                                                     type="text"
                                                     name="telephone"
-                                                    placeholder="telephone"
+                                                    placeholder={strings.fields.telephone}
                                                     value={this.state.vet.telephone}
                                                     onChange={this.handleFieldChange}
                                                     data-testid="phone-input"
@@ -203,12 +210,12 @@ export default class EditVetForm extends React.Component {
                                             <Form.Help color="danger" style={errorStyle}>{this.state.errors.telephone}</Form.Help>
                                         </Form.Field>
                                         <Form.Field horizontal={true} marginless={true}>
-                                            <Form.Label style={fieldStyle}>Office Hours</Form.Label>
+                                            <Form.Label style={fieldStyle}>{strings.fields.office_hours}</Form.Label>
                                             <Form.Control>
                                                 <Form.Input 
                                                     type="text"
                                                     name="office_hours"
-                                                    placeholder="office hours"
+                                                    placeholder={strings.fields.office_hours}
                                                     value={this.state.vet.office_hours}
                                                     onChange={this.handleFieldChange}
                                                     data-testid="office-input"
@@ -217,12 +224,12 @@ export default class EditVetForm extends React.Component {
                                             <Form.Help color="danger" style={errorStyle}>{this.state.errors.office_hours}</Form.Help>
                                         </Form.Field>
                                         <Form.Field horizontal={true} marginless={true}>
-                                            <Form.Label style={fieldStyle}>Specialty</Form.Label>
+                                            <Form.Label style={fieldStyle}>{strings.fields.specialty}</Form.Label>
                                             <Form.Control>
                                                 <Form.Input 
                                                     type="text"
                                                     name="specialty"
-                                                    placeholder="specialty"
+                                                    placeholder={strings.fields.specialty}
                                                     value={this.state.vet.specialty}
                                                     onChange={this.handleFieldChange}
                                                     data-testid="specialty-input"
@@ -235,10 +242,10 @@ export default class EditVetForm extends React.Component {
                             </Modal.Card.Body>
                             <Modal.Card.Foot>
                                 <Button type="submit" onClick={this.handleSubmit} size="small" color="success" rounded={true}>
-                                    Update Vet
+                                    {strings.edit_button}
                                 </Button>
                                 <Button type="cancel" onClick={this.close} size="small" color="danger" rounded={true}>
-                                    Cancel
+                                    {strings.cancel_button}
                                 </Button>
                             </Modal.Card.Foot>
                         </Modal.Card>
@@ -248,6 +255,7 @@ export default class EditVetForm extends React.Component {
         )
     }
 }
+EditVetForm.contextType = LanguageContext
 
 EditVetForm.propTypes = {
     vet: PropTypes.object.isRequired,
