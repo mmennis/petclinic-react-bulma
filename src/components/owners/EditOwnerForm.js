@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Form, Content, Heading } from 'react-bulma-components'
+import { Button, Modal, Form, Heading, Content } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 import { data } from './owers.localisation.data'
 import LocalizedStrings from 'react-localization'
@@ -58,6 +58,12 @@ export default class EditOwnerForm extends React.Component {
             case 'first_name': 
                 errors.first_name = (value === '') ? strings.errors.first_name : null
                 break
+            case 'last_name': 
+                errors.last_name = (value === '') ? strings.errors.last_name : null
+                break
+            case 'address':
+                errors.address = (value === '') ? strings.errors.address : null
+                break
             default:
                 console.log(`Unrecognized field "${name}"`)
                 break
@@ -72,7 +78,7 @@ export default class EditOwnerForm extends React.Component {
         strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small" data-testis="modal-open">{strings.edit_button}</Button>
+                <Button onClick={this.open} size="small" data-testid="modal-open">{strings.edit_button}</Button>
                 <form onSubmit={this.handleSubmit} data-testid="form">
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>
@@ -80,20 +86,54 @@ export default class EditOwnerForm extends React.Component {
                                 <Modal.Card.Title>{this.state.owner.first_name} {this.state.owner.last_name}</Modal.Card.Title>
                             </Modal.Card.Head>
                             <Modal.Card.Body>
-                                <Form.Field horizontal={true} marginless={true}>
-                                    <Form.Label style={labelStyle}>{strings.fields.first_name}</Form.Label>
-                                    <Form.Control>
-                                        <Form.Input 
-                                            name="first_name"
-                                            type="text"
-                                            placeholder={strings.fields.first_name}
-                                            value={this.state.owner.first_name}
-                                            onChange={this.handleFieldChange}
-                                            data-testid="first-name-input"
-                                        />
-                                    </Form.Control>
-                                    <Form.Help color="danger" style={errorStyle}>{this.state.errors.first_name}</Form.Help>
-                                </Form.Field>
+                                <Content>
+                                    <Form.Field horizontal={true} marginless={true}>
+                                        <Form.Label style={labelStyle}>{strings.fields.first_name}</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name="first_name"
+                                                type="text"
+                                                placeholder={strings.fields.first_name}
+                                                value={this.state.owner.first_name}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="first-name-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle}>{this.state.errors.first_name}</Form.Help>
+                                    </Form.Field>
+                                    <Form.Field horizontal={true} marginless={true}>
+                                        <Form.Label style={labelStyle}>{strings.fields.last_name}</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name="last_name"
+                                                type="text"
+                                                placeholder={strings.fields.last_name}
+                                                value={this.state.owner.last_name}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="last-name-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle}>{this.state.errors.last_name}</Form.Help>
+                                    </Form.Field>
+                                </Content>
+                                <Content>
+                                    <Heading size={4}>{strings.address_heading}</Heading>
+                                    <Form.Field horizontal={true} marginless={true}>
+                                        <Form.Label style={labelStyle}>{strings.fields.address}</Form.Label>
+                                        <Form.Control>
+                                            <Form.Input 
+                                                name="address"
+                                                type="text"
+                                                placeholder={strings.fields.address}
+                                                value={this.state.owner.address}
+                                                onChange={this.handleFieldChange}
+                                                data-testid="adddress-input"
+                                            />
+                                        </Form.Control>
+                                        <Form.Help color="danger" style={errorStyle}>{this.state.errors.address}</Form.Help>
+                                    </Form.Field>
+
+                                </Content>
                             </Modal.Card.Body>
                             <Modal.Card.Foot>
                                 <Button type="submit" color="success" size="small" onClick={this.handleSubmit} data-testid="edit-button" rounded={true}>

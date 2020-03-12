@@ -57,7 +57,7 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
       <div>
         <button
           className="is-small button"
-          data-testis="modal-open"
+          data-testid="modal-open"
           disabled={false}
           onClick={[Function]}
           tabIndex={0}
