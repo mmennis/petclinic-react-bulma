@@ -2,7 +2,7 @@ import React from 'react'
 import { LanguageContext } from './LanguageContext'
 import LanguageSelector from './LanguageSelector'
 import { create } from 'react-test-renderer'
-import { render, fireEvent, getByTestId } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 const ctx = {
     lang: 'en',

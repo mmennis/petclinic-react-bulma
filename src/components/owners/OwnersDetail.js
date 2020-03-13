@@ -2,6 +2,11 @@ import React from 'react'
 import { Button, Modal, Media, Image, Content, Heading } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 import OwnerPetList from './OwnerPetList'
+import { data } from './owers.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
+
+const strings = new LocalizedStrings(data)
 
 export default class OwnersDetail extends React.Component {
 
@@ -20,10 +25,11 @@ export default class OwnersDetail extends React.Component {
     close = () => this.setState({ show: false })
 
     render() {
-
+        const localeContext = this.context
+        strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small">Details</Button>
+                <Button onClick={this.open} size="small">{strings.details_button}</Button>
                 <Modal show={this.state.show} onClose={this.close} {...this.props.modal} >
                     <Modal.Card>
                         <Modal.Card.Head onClose={this.close}>
@@ -36,9 +42,9 @@ export default class OwnersDetail extends React.Component {
                                 </Media.Item>
                                 <Media.Item>
                                     <Content>
-                                        <Heading marginless={true} paddingless={false} size={6}>Address:</Heading>
+                                        <Heading marginless={true} paddingless={false} size={6}>{strings.address_heading}:</Heading>
                                         <p style={{ 'marginBottom': '5px'}}>{this.props.owner.address}<br/>{this.props.owner.city}, {this.props.owner.state}</p>
-                                        <Heading marginless={true} paddingless={false} size={6}>Phone:  </Heading >
+                                        <Heading marginless={true} paddingless={false} size={6}>{strings.fields.telephone}:  </Heading >
                                         <p>{this.props.owner.telephone}</p>
                                         <OwnerPetList owner={this.props.owner} />
                                     </Content>
@@ -54,6 +60,8 @@ export default class OwnersDetail extends React.Component {
     }
 
 }
+
+OwnersDetail.contextType = LanguageContext
 
 OwnersDetail.propTypes = {
     owner: PropTypes.object.isRequired,
