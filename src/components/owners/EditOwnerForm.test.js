@@ -93,6 +93,17 @@ describe('EditOwnerForm', () => {
             fireEvent.click(getByTestId('modal-open'))
             expect(getByTestId('edit-button').disabled).toBe(false)
         })
+
+        it('should call the handleOwnerUpdate with the changes to the owner fields', () => {
+            const { getByTestId } = render(<EditOwnerForm owner={testOwner} handleOwnerUpdate={handleOwnerCallback} />)
+            fireEvent.click(getByTestId('modal-open'))
+            const newOwner = { ...testOwner }
+            newOwner.state = 'XX'
+            fireEvent.change(getByTestId('state-input'), { target: { value: 'XX' } })
+            fireEvent.click(getByTestId('edit-button'))
+            expect(handleOwnerCallback).toHaveBeenCalled()
+            expect(handleOwnerCallback).toHaveBeenCalledWith(newOwner)
+        })
     })
 
 })
