@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditOwnerForm should render as per the snapshot 1`] = `
+<div>
+  <button
+    className="is-small button"
+    data-testid="modal-open"
+    disabled={false}
+    onClick={[Function]}
+    tabIndex={0}
+  >
+    Update
+  </button>
+  <form
+    data-testid="form"
+    onSubmit={[Function]}
+  />
+</div>
+`;

@@ -44,6 +44,10 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
           1 pet
         </span>
       </h1>
+    </div>
+    <div
+      className="card-footer"
+    >
       <div>
         <button
           className="is-small button"
@@ -53,6 +57,21 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
         >
           Details
         </button>
+      </div>
+      <div>
+        <button
+          className="is-small button"
+          data-testid="modal-open"
+          disabled={false}
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Update
+        </button>
+        <form
+          data-testid="form"
+          onSubmit={[Function]}
+        />
       </div>
     </div>
   </div>
