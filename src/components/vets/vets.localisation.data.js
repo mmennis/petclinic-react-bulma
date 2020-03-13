@@ -25,7 +25,9 @@ const data = {
         add_button: 'Add vet',
         cancel_button: 'Cancel',
         edit_button: 'Update',
+        delete_button: 'Delete',
         new_vet_button: 'New Vet',
+        hours: 'Hours',
     },
     es: {
         fields: {
@@ -53,7 +55,9 @@ const data = {
         add_button: 'Añadir',
         cancel_button: 'Cancelar',
         edit_button: 'Editar',
+        delete_button: 'Eliminar',
         new_vet_button: 'Nuevo veterinario',
+        hours: 'Horas',
     },
     fr: {
         fields: {
@@ -81,7 +85,9 @@ const data = {
         add_button: 'Ajouter',
         cancel_button: 'Annuler',
         edit_button: 'Réviser',
+        delete_button: 'Effacer',
         new_vet_button: 'Nouvelle vétérinaire',
+        hours: 'Heures',
     }
 }
 

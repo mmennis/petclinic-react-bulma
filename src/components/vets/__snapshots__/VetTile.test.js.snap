@@ -36,7 +36,7 @@ exports[`VetTile should render as per the snapshot 1`] = `
         <h1
           className="title is-6 is-marginless"
         >
-          Address
+          Home Address
         </h1>
         <p>
           1234 Main St
@@ -57,7 +57,8 @@ exports[`VetTile should render as per the snapshot 1`] = `
         className="content is-small"
       >
         <p>
-          Hours: 
+          Hours
+          : 
           8:00 AM - 5:00 PM
         </p>
       </div>
