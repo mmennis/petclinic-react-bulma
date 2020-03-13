@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const locales = {
-    en: { name: 'English', code: 'en', lang: 'English', flag: 'EN'},
+    en: { name: 'English', code: 'en', lang: 'English', flag: 'US'},
     es: { name: 'Spanish', code: 'es', lang: 'Espanol', flag: 'ES'},
     fr: { name: 'French', code: 'fr', lang: 'Francais', flag: 'FR'}
 }
