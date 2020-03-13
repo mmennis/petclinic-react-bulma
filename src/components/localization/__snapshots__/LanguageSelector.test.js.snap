@@ -1,46 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LanguageSelector should match the saved snapshot 1`] = `
-<div
-  className="field is-horizontal"
->
-  <label
-    className="label is-small"
-  >
-    Lang:
-  </label>
+<div>
   <div
-    className="control"
+    className="field is-horizontal"
   >
-    <div
-      className="select is-small is-primary"
+    <label
+      className="label is-small"
     >
-      <select
-        className="is-marginless"
-        data-testid="select"
-        disabled={false}
-        multiple={false}
-        onChange={[Function]}
-        readOnly={false}
-        value="en"
+      Lang:
+    </label>
+    <div
+      className="control"
+    >
+      <div
+        className="select is-small is-primary"
       >
-        <option
+        <select
+          className="is-marginless"
+          data-testid="select"
+          disabled={false}
+          multiple={false}
+          onChange={[Function]}
+          readOnly={false}
           value="en"
         >
-          English
-        </option>
-        <option
-          value="es"
-        >
-          Espanol
-        </option>
-        <option
-          value="fr"
-        >
-          Francais
-        </option>
-      </select>
+          <option
+            value="en"
+          >
+            English
+          </option>
+          <option
+            value="es"
+          >
+            Espanol
+          </option>
+          <option
+            value="fr"
+          >
+            Francais
+          </option>
+        </select>
+      </div>
     </div>
+    <img
+      src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/us.svg"
+      style={
+        Object {
+          "display": "inline-block",
+          "height": "2em",
+          "verticalAlign": "middle",
+          "width": "2em",
+        }
+      }
+    />
   </div>
 </div>
 `;
