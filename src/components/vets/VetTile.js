@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Tile, Card, Content, Heading } from 'react-bulma-components'
+import { Tile, Card, Content, Heading, Button } from 'react-bulma-components'
 import EditVetForm from './EditVetForm'
 import axios from 'axios'
 
@@ -30,6 +30,10 @@ export default class VetTile extends React.Component {
             })
     }
 
+    handleDeleteVet = () => {
+        this.props.handleDeleteVet(this.props.vet)
+    }
+
     render() {
         return (
             <Tile size={3}>
@@ -56,6 +60,7 @@ export default class VetTile extends React.Component {
                             handleVetUpdate={this.handleVetUpdate}
                             modal={{closeOnBlur: true, showClose: true }}
                         />
+                        <Button onClick={this.handleDeleteVet} size="small">Delete</Button>
                     </Card.Content>
                 </Card>
             </Tile>
@@ -64,5 +69,6 @@ export default class VetTile extends React.Component {
 }
 
 VetTile.propTypes = {
-    vet: PropTypes.object.isRequired
+    vet: PropTypes.object.isRequired,
+    handleDeleteVet: PropTypes.func.isRequired,
 }
