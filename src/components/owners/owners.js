@@ -70,8 +70,10 @@ export default class Owners extends React.Component {
                     console.log(`Add owner message: ${response.data.msg}`)
                     newOwner._id = response.data.id
                     newOwner.pets = []
+                    const updatedOwners = [...this.state.owners, newOwner]
                     this.setState({
-                        owners: [...this.state.owners, newOwner]
+                        owners: updatedOwners,
+                        filteredOwners: updatedOwners
                     })
                 }
             })

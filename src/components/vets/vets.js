@@ -47,10 +47,15 @@ export default class Vets extends React.Component {
     handleNewVet = (newVet) => {
         axios.post(BASE_URL + '/vets', newVet)
             .then((res) => {
-                // FIXME - Need to implement?
-                // Need to incorporate the returned _id into the current list force a 
-                // componentDidMount
-                console.log(`Received response from server: ${JSON.stringify(res)}`)
+                if (res.status === 201) {
+                    console.log(`Received response from server: ${JSON.stringify(res.data.msg)}`)
+                    newVet._id = res.data.id
+                    const updatedVets = [...this.state.vets, newVet]
+                    this.setState({
+                        vets: updatedVets,
+                        filteredVets: updatedVets
+                    })
+                }
             })
             .catch((err) => {
                 console.error(`Problem adding new vet to backend database: ${err}`)
