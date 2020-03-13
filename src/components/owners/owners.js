@@ -69,8 +69,15 @@ export default class Owners extends React.Component {
                 // FIXME
                 // This needs to update teh state in oredr to display new owner
                 // console.log(`Received response: ${JSON.stringify(response)}`)
-                console.log(`Ad owner message: ${response.data.msg}`)
-                console.log(`New owner idL ${response.data.id}`)
+                // console.log(`New owner idL ${response.data.id}`)
+                if (response.status === 201) {
+                    console.log(`Add owner message: ${response.data.msg}`)
+                    newOwner._id = response.data.id
+                    newOwner.pets = []
+                    this.setState({
+                        owners: [...this.state.owners, newOwner]
+                    })
+                }
             })
             .catch((error) => {
                 console.error(`Problem adding new owner to backend DB ${error}`)
