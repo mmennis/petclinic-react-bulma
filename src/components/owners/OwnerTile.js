@@ -32,13 +32,15 @@ export default class OwnerTile extends React.Component {
                             <p>{this.props.owner.city}, {this.props.owner.state}</p>
                         </Content>
                         <Heading size={4} subtitle><Pluralize singular={'pet'} count={this.props.owner.pets.length}/></Heading>
+                    </Card.Content>
+                    <Card.Footer>
                         <OwnersDetail owner={this.props.owner} modal={{closeOnBlur: true, showClose: true }}/>
                         <EditOwnerForm 
                             owner={this.props.owner} 
                             handleOwnerUpdate={this.handleOwnerUpdate} 
                             modal={{closeOnBlur: true, showClose: true }}
                         />
-                    </Card.Content>
+                    </Card.Footer>
                 </Card>                
             </Tile>
         )
