@@ -22,6 +22,11 @@ describe('LanguageSelector', () => {
         jest.clearAllMocks()
     })
 
+    it('should match the saved snapshot', () => {
+        const langSelector = create(<LanguageSelector />)
+        expect(langSelector).toMatchSnapshot()
+    })
+
     it('should call the updateLocal method in the context', () => {
         const { getByTestId } = renderLanguageSelector()
         fireEvent.change(getByTestId('select'), {target: { value: 'fr'}})

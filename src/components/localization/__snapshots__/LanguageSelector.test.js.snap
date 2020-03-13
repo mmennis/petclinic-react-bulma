@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LanguageSelector should match the saved snapshot 1`] = `
+<div
+  className="field is-horizontal"
+>
+  <label
+    className="label is-small"
+  >
+    Lang:
+  </label>
+  <div
+    className="control"
+  >
+    <div
+      className="select is-small is-primary"
+    >
+      <select
+        className="is-marginless"
+        data-testid="select"
+        disabled={false}
+        multiple={false}
+        onChange={[Function]}
+        readOnly={false}
+        value="en"
+      >
+        <option
+          value="en"
+        >
+          English
+        </option>
+        <option
+          value="es"
+        >
+          Espanol
+        </option>
+        <option
+          value="fr"
+        >
+          Francais
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
