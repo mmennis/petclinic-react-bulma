@@ -21,6 +21,7 @@ const data = {
         add_button: 'Add owner',
         cancel_button: 'Cancel',
         edit_button: 'Update',
+        details_button: 'Details',
         new_owner_button: 'New Owner',
     },
     es: {
@@ -45,6 +46,7 @@ const data = {
         add_button: 'Añadir',
         cancel_button: 'Cancelar',
         edit_button: 'Actualizar',
+        details_button: 'Detalles',
         new_owner_button: 'Nuevo Dueño',
     },
     fr: {
@@ -69,6 +71,7 @@ const data = {
         add_button: 'Ajouter',
         cancel_button: 'Annuler',
         edit_button: 'Reviser',
+        details_button: 'Détails',
         new_owner_button: 'Nouvelle cliente',
     }
 }
