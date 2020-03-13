@@ -104,7 +104,13 @@ export default class EditVetForm extends React.Component {
         strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small" data-testid="modal-open">{strings.edit_button}</Button>
+                <Button 
+                    onClick={this.open} 
+                    size="small" color="primary" 
+                    data-testid="modal-open"
+                    style={{ 'marginLeft': '20px', 'marginRight': '10px' }}>
+                        {strings.edit_button}
+                </Button>
                 <form onSubmit={this.handleSubmit} data-testid="form">
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>

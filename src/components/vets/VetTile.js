@@ -55,13 +55,21 @@ export default class VetTile extends React.Component {
                         <Content size="small">
                             <p>Hours: {this.props.vet.office_hours}</p>
                         </Content>
+
+                    </Card.Content>
+                    <Card.Footer>
                         <EditVetForm 
                             vet={this.props.vet} 
                             handleVetUpdate={this.handleVetUpdate}
                             modal={{closeOnBlur: true, showClose: true }}
                         />
-                        <Button onClick={this.handleDeleteVet} size="small">Delete</Button>
-                    </Card.Content>
+                        <Button 
+                            onClick={this.handleDeleteVet} 
+                            size="small" color="danger"
+                            style={{ 'marginLeft': '10px', 'marginRight': '10px' }}>
+                            Delete
+                        </Button>
+                    </Card.Footer>
                 </Card>
             </Tile>
         )
