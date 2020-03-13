@@ -23,6 +23,7 @@ export default class Vets extends React.Component {
         this.onClick = this.onClick.bind(this)
         this.handleFilterUpdate = this.handleFilterUpdate.bind(this)
         this.handleNewVet = this.handleNewVet.bind(this)
+        this.handleDeleteVet = this.handleDeleteVet.bind(this)
     }
 
 
@@ -62,6 +63,26 @@ export default class Vets extends React.Component {
             })
             .finally(() => {
                 console.log(`New vet added to database: ${JSON.stringify(newVet)}`)
+            })
+    }
+
+    handleDeleteVet = (deletedVet) => {
+        console.log(`Vet _id to be deleted: ${deletedVet._id}`)
+        axios.delete(`${BASE_URL}/vets/${deletedVet._id}`)
+            .then((response) => {
+                if(response.status === 201) {
+                    const updatedVets = this.state.vets.filter(vet => vet._id !== deletedVet._id )
+                    this.setState({
+                        vets: updatedVets,
+                        filteredVets: updatedVets,
+                    })
+                }
+            })
+            .catch((err) => {
+                console.error(`Problem removing vet._id ${deletedVet._id}: ${err}`)
+            })
+            .finally(() => {
+                console.log(`Deleted vet with id ${deletedVet._id}`)
             })
     }
 
@@ -107,6 +128,7 @@ export default class Vets extends React.Component {
                 <NewVetForm modal={{closeOnBlur: true, showClose: true }} handleNewVet={this.handleNewVet}/>
                 <VetGrid 
                     vets={gridVets}
+                    handleDeleteVet={this.handleDeleteVet}
                 />
             </Section>
         )

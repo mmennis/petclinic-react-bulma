@@ -1,8 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Tile, Card, Content, Heading } from 'react-bulma-components'
+import { Tile, Card, Content, Heading, Button } from 'react-bulma-components'
 import EditVetForm from './EditVetForm'
 import axios from 'axios'
+import { data } from './vets.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
+
+const strings = new LocalizedStrings(data)
 
 const BASE_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
 
@@ -30,7 +35,13 @@ export default class VetTile extends React.Component {
             })
     }
 
+    handleDeleteVet = () => {
+        this.props.handleDeleteVet(this.props.vet)
+    }
+
     render() {
+        const localeContext = this.context
+        strings.setLanguage(localeContext.lang)
         return (
             <Tile size={3}>
                 <Card paddingless={true} rounded="true" outlined="true">
@@ -42,27 +53,39 @@ export default class VetTile extends React.Component {
                             <p>{this.props.vet.specialty}</p>
                         </Content>
                         <Content>
-                            <Heading marginless={true} paddingless={false} size={6}>Address</Heading>
+                            <Heading marginless={true} paddingless={false} size={6}>{strings.address_heading}</Heading>
                             <p>{this.props.vet.address}<br/>{this.props.vet.city}, {this.props.vet.state}</p>
                         </Content>
                         <Content size="small">
                             <p>{this.props.vet.telephone}</p>
                         </Content>
                         <Content size="small">
-                            <p>Hours: {this.props.vet.office_hours}</p>
+                            <p>{strings.hours}: {this.props.vet.office_hours}</p>
                         </Content>
+
+                    </Card.Content>
+                    <Card.Footer>
                         <EditVetForm 
                             vet={this.props.vet} 
                             handleVetUpdate={this.handleVetUpdate}
                             modal={{closeOnBlur: true, showClose: true }}
                         />
-                    </Card.Content>
+                        <Button 
+                            onClick={this.handleDeleteVet} 
+                            size="small" color="danger"
+                            style={{ 'marginLeft': '10px', 'marginRight': '10px' }}>
+                            {strings.delete_button}
+                        </Button>
+                    </Card.Footer>
                 </Card>
             </Tile>
         )
     }
 }
 
+VetTile.contextType = LanguageContext
+
 VetTile.propTypes = {
-    vet: PropTypes.object.isRequired
+    vet: PropTypes.object.isRequired,
+    handleDeleteVet: PropTypes.func.isRequired,
 }

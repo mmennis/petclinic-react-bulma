@@ -3,10 +3,16 @@
 exports[`EditVetForm should render as per the snapshot 1`] = `
 <div>
   <button
-    className="is-small button"
+    className="is-primary is-small button"
     data-testid="modal-open"
     disabled={false}
     onClick={[Function]}
+    style={
+      Object {
+        "marginLeft": "20px",
+        "marginRight": "10px",
+      }
+    }
     tabIndex={0}
   >
     Update

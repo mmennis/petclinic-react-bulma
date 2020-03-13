@@ -13,7 +13,7 @@ export default class VetRowTile extends React.Component {
     createRow = () => {
         let list = []
         for (const vet of this.props.vets) {
-            list.push(<VetTile key={vet._id} vet={vet} />)
+            list.push(<VetTile key={vet._id} vet={vet} handleDeleteVet={this.props.handleDeleteVet} />)
         }
         return list
     }
@@ -28,5 +28,6 @@ export default class VetRowTile extends React.Component {
 }
 
 VetRowTile.propTypes = {
-    vets: PropTypes.array.isRequired
+    vets: PropTypes.array.isRequired,
+    handleDeleteVet: PropTypes.func.isRequired,
 }

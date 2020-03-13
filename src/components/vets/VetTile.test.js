@@ -16,13 +16,15 @@ const testVet = {
 describe('VetTile', () => {
 
     it('should render as per the snapshot', () => {
-        const vetTile = create(<VetTile vet={testVet}/>)
+        const callback = jest.fn()
+        const vetTile = create(<VetTile vet={testVet} handleDeleteVet={callback}/>)
         expect(vetTile.toJSON()).toMatchSnapshot()
     })
 
     it('should have vet details in the output', () => {
+        const callback = jest.fn()
         console.error = jest.fn()
-        const { getByText } = render(<VetTile vet={testVet} />)
+        const { getByText } = render(<VetTile vet={testVet} handleDeleteVet={callback}/>)
         const vetFName = getByText(/First/i)
         expect(vetFName).toBeInTheDocument();
         const vetLName = getByText(/Last/i)
@@ -34,7 +36,7 @@ describe('VetTile', () => {
     it('should log an error to the console if required owner props missing', () => {
         console.error = jest.fn()
         React.createElement(VetTile)
-        expect(console.error).toHaveBeenCalledTimes(1)
+        expect(console.error).toHaveBeenCalledTimes(2)
     })
 
 })

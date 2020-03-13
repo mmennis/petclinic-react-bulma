@@ -17,7 +17,7 @@ export default class VetGrid extends React.Component {
         for (i = 0, j=this.props.vets.length; i < j; i += rowSize) {
             let rowVets = this.props.vets.slice(i, i+rowSize)
             grid.push(
-                <VetRowTile vets={rowVets} key={i} />
+                <VetRowTile vets={rowVets} key={i} handleDeleteVet={this.props.handleDeleteVet} />
             )
         }
         return grid
@@ -38,5 +38,6 @@ export default class VetGrid extends React.Component {
 }
 
 VetGrid.propTypes = {
-    vets: PropTypes.array.isRequired
+    vets: PropTypes.array.isRequired,
+    handleDeleteVet: PropTypes.func.isRequired
 }

@@ -36,7 +36,7 @@ exports[`VetTile should render as per the snapshot 1`] = `
         <h1
           className="title is-6 is-marginless"
         >
-          Address
+          Home Address
         </h1>
         <p>
           1234 Main St
@@ -57,16 +57,27 @@ exports[`VetTile should render as per the snapshot 1`] = `
         className="content is-small"
       >
         <p>
-          Hours: 
+          Hours
+          : 
           8:00 AM - 5:00 PM
         </p>
       </div>
+    </div>
+    <div
+      className="card-footer"
+    >
       <div>
         <button
-          className="is-small button"
+          className="is-primary is-small button"
           data-testid="modal-open"
           disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": "20px",
+              "marginRight": "10px",
+            }
+          }
           tabIndex={0}
         >
           Update
@@ -76,6 +87,20 @@ exports[`VetTile should render as per the snapshot 1`] = `
           onSubmit={[Function]}
         />
       </div>
+      <button
+        className="is-danger is-small button"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "10px",
+            "marginRight": "10px",
+          }
+        }
+        tabIndex={0}
+      >
+        Delete
+      </button>
     </div>
   </div>
 </div>
