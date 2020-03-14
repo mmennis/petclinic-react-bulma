@@ -1,6 +1,6 @@
 import React from 'react'
 import { create } from 'react-test-renderer'
-import { render, fireEvent, getByTestId } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import OwnerTile from './OwnerTile'
 
 const testOwner = {
