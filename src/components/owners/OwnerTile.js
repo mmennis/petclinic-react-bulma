@@ -47,8 +47,13 @@ export default class OwnerTile extends React.Component {
         const localeCtx = this.context
         strings.setLanguage(localeCtx.lang)
         return (
-            <Tile size={3} renderAs="article" kind="child" notification color="light" paddingless={false} key={this.props.owner._id}>
-                <Card paddingless={true} rounded="true" outlined="true" >
+            <Tile 
+                size={3} renderAs="article" 
+                kind="child" notification color="light" 
+                style={{ 'padding': '10px 20px 10px 20px'}} 
+                key={this.props.owner._id}
+            >
+                <Card paddingless={true} outlined="true" >
                     <Card.Header outlined="true" >
                         <Card.Header.Title>{this.props.owner.first_name} {this.props.owner.last_name}</Card.Header.Title>
                     </Card.Header>
@@ -58,21 +63,25 @@ export default class OwnerTile extends React.Component {
                         </Content>
                         <Heading size={4} subtitle><Pluralize singular={'pet'} count={this.props.owner.pets.length}/></Heading>
                     </Card.Content>
-                    <Card.Footer>
-                        <OwnersDetail owner={this.props.owner} modal={{closeOnBlur: true, showClose: true }}/>
-                        <EditOwnerForm 
-                            owner={this.props.owner} 
-                            handleOwnerUpdate={this.handleOwnerUpdate} 
-                            modal={{closeOnBlur: true, showClose: true }}
-                        />
-                        <Button 
-                            onClick={this.handleDelete}
-                            color="danger" size="small"
-                            style={{ 'marginLeft': '5px'}}
-                            data-testid="delete-button"
-                        >
-                            {strings.delete_button}
-                        </Button>
+                    <Card.Footer style={{ 'margin': '3px', 'padding': '10px 4px 10px 4px'}}>
+                            <OwnersDetail 
+                                owner={this.props.owner} 
+                                modal={{closeOnBlur: true, showClose: true }}
+                                pull="right"
+                            />
+                            <EditOwnerForm 
+                                owner={this.props.owner} 
+                                handleOwnerUpdate={this.handleOwnerUpdate} 
+                                modal={{closeOnBlur: true, showClose: true }}
+                            />
+                            <Button pull="right"
+                                onClick={this.handleDelete}
+                                color="danger" size="small"
+                                data-testid="delete-button"
+                                rounded={true}
+                            >
+                                {strings.delete_button}
+                            </Button>
                     </Card.Footer>
                 </Card>                
             </Tile>
