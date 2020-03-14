@@ -3,7 +3,7 @@ import './App.css';
 import Owners from './components/owners/owners'
 import Vets from './components/vets/vets'
 import Home from './components/Home'
-import { Section, Hero, Container, Heading, Navbar } from 'react-bulma-components'
+import { Section, Hero, Container, Heading, Navbar, Footer, Content } from 'react-bulma-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { LanguageContext } from './components/localization/LanguageContext'
 import LanguageSelector from './components/localization/LanguageSelector'
@@ -98,6 +98,15 @@ class App extends React.Component {
               <Route exact path='/home' component={Home} />
             </Switch>
           </Router>
+          <Footer>
+            <Container>
+              <Content style={{ 'textAlign': 'center' }}>
+                <p>
+                  <strong>Bulma</strong> based implementation of pet clinic app UI
+                </p>
+              </Content>
+            </Container>
+          </Footer>
         </LanguageContext.Provider>
       </div>
     )
