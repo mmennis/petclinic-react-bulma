@@ -5,6 +5,11 @@ import OwnersDetail from './OwnersDetail'
 import EditOwnerForm from './EditOwnerForm' 
 import Pluralize from 'react-pluralize'
 import axios from 'axios'
+import { data } from './owers.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
+
+const strings = new LocalizedStrings(data)
 
 const BASE_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
 
@@ -39,6 +44,8 @@ export default class OwnerTile extends React.Component {
     }
 
     render() {
+        const localeCtx = this.context
+        strings.setLanguage(localeCtx.lang)
         return (
             <Tile size={3} renderAs="article" kind="child" notification color="light" paddingless={false} key={this.props.owner._id}>
                 <Card paddingless={true} rounded="true" outlined="true" >
@@ -61,10 +68,10 @@ export default class OwnerTile extends React.Component {
                         <Button 
                             onClick={this.handleDelete}
                             color="danger" size="small"
-                            style={{ 'marginLeft': '10px'}}
+                            style={{ 'marginLeft': '5px'}}
                             data-testid="delete-button"
                         >
-                            Delete
+                            {strings.delete_button}
                         </Button>
                     </Card.Footer>
                 </Card>                
@@ -73,6 +80,8 @@ export default class OwnerTile extends React.Component {
     }
 
 }
+
+OwnerTile.contextType = LanguageContext
 
 OwnerTile.propTypes = {
     owner: PropTypes.object.isRequired,

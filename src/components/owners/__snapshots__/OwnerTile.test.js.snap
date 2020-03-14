@@ -80,7 +80,7 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
         onClick={[Function]}
         style={
           Object {
-            "marginLeft": "10px",
+            "marginLeft": "5px",
           }
         }
         tabIndex={0}
