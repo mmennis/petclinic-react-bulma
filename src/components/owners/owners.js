@@ -85,8 +85,24 @@ export default class Owners extends React.Component {
             })
     }
 
-    handleDeleteOwner = (owner) => {
-        console.log(`Owner _id to be deleted ${owner._id}`)
+    handleDeleteOwner = (deletedOwner) => {
+        console.log(`Owner _id to be deleted ${deletedOwner._id}`)
+        axios.delete(`${BASE_URL}/owners/${deletedOwner._id}`)
+            .then((response) => {
+                if( response.status === 201) {
+                    const updatedOwners = this.state.owners.filter(owner => owner._id !== deletedOwner._id)
+                    this.setState({
+                        owners: updatedOwners,
+                        filteredOwners: updatedOwners
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error(`Problem removing owner with id ${deletedOwner._id}: ${error}`)
+            })
+            .finally(() => {
+                console.log(`Owner with id ${deletedOwner._id} removed`)
+            })
     }
 
     render() {
