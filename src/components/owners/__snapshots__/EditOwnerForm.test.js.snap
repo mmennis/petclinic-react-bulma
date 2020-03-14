@@ -3,7 +3,7 @@
 exports[`EditOwnerForm should render as per the snapshot 1`] = `
 <div>
   <button
-    className="is-warning is-small is-rounded button"
+    className="is-info is-small is-rounded button"
     data-testid="modal-open"
     disabled={false}
     onClick={[Function]}

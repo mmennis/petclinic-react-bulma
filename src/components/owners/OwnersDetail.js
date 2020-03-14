@@ -29,7 +29,7 @@ export default class OwnersDetail extends React.Component {
         strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small" color="info" rounded={true}>{strings.details_button}</Button>
+                <Button onClick={this.open} size="small" color="primary" rounded={true}>{strings.details_button}</Button>
                 <Modal show={this.state.show} onClose={this.close} {...this.props.modal} >
                     <Modal.Card>
                         <Modal.Card.Head onClose={this.close}>

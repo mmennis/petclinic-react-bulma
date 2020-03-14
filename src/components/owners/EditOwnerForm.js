@@ -88,7 +88,7 @@ export default class EditOwnerForm extends React.Component {
         strings.setLanguage(localeContext.lang)
         return (
             <div>
-                <Button onClick={this.open} size="small" data-testid="modal-open" color="warning" rounded={true}>{strings.edit_button}</Button>
+                <Button onClick={this.open} size="small" data-testid="modal-open" color="info" rounded={true}>{strings.edit_button}</Button>
                 <form onSubmit={this.handleSubmit} data-testid="form">
                     <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
                         <Modal.Card>
