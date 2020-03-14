@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tile, Heading, Content, Card } from 'react-bulma-components'
+import { Tile, Heading, Content, Card, Button } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 import OwnersDetail from './OwnersDetail'
 import EditOwnerForm from './EditOwnerForm' 
@@ -17,6 +17,7 @@ export default class OwnerTile extends React.Component {
             updated: false
         }
         this.handleOwnerUpdate = this.handleOwnerUpdate.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleOwnerUpdate = (owner) => {
@@ -31,6 +32,10 @@ export default class OwnerTile extends React.Component {
             .finally(() => {
                 console.log(`Owner ${owner._id} updated`)
             })
+    }
+
+    handleDelete = () => {
+        this.props.handleDeleteOwner(this.props.owner)
     }
 
     render() {
@@ -53,6 +58,14 @@ export default class OwnerTile extends React.Component {
                             handleOwnerUpdate={this.handleOwnerUpdate} 
                             modal={{closeOnBlur: true, showClose: true }}
                         />
+                        <Button 
+                            onClick={this.handleDelete}
+                            color="danger" size="small"
+                            style={{ 'marginLeft': '10px'}}
+                            data-testid="delete-button"
+                        >
+                            Delete
+                        </Button>
                     </Card.Footer>
                 </Card>                
             </Tile>
@@ -62,5 +75,6 @@ export default class OwnerTile extends React.Component {
 }
 
 OwnerTile.propTypes = {
-    owner: PropTypes.object.isRequired
+    owner: PropTypes.object.isRequired,
+    handleDeleteOwner: PropTypes.func.isRequired,
 }

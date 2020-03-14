@@ -85,6 +85,10 @@ export default class Owners extends React.Component {
             })
     }
 
+    handleDeleteOwner = (owner) => {
+        console.log(`Owner _id to be deleted ${owner._id}`)
+    }
+
     render() {
         this.state.filteredOwners.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1)
 
@@ -103,6 +107,7 @@ export default class Owners extends React.Component {
                 <NewOwnerForm handleNewOwner={this.handleNewOwner} modal={{closeOnBlur: true, showClose: true }} />
                 <OwnerGrid 
                     owners={gridOwners} 
+                    handleDeleteOwner={this.handleDeleteOwner}
                 />
             </Section>
         )

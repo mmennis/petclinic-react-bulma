@@ -23,7 +23,7 @@ export default class OwnerRowTile extends React.Component {
     createRow = () => {
         let list = []
         for (const owner of this.props.owners) {
-            list.push(<OwnerTile key={owner._id} owner={owner} />)
+            list.push(<OwnerTile key={owner._id} owner={owner} handleDeleteOwner={this.props.handleDeleteOwner}/>)
         }
         return list
     }
@@ -31,5 +31,6 @@ export default class OwnerRowTile extends React.Component {
 }
 
 OwnerRowTile.propTypes = {
-    owners: PropTypes.array.isRequired
+    owners: PropTypes.array.isRequired,
+    handleDeleteOwner: PropTypes.func.isRequired,
 }
