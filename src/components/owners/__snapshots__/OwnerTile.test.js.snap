@@ -73,6 +73,20 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
           onSubmit={[Function]}
         />
       </div>
+      <button
+        className="is-danger is-small button"
+        data-testid="delete-button"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+        tabIndex={0}
+      >
+        Delete
+      </button>
     </div>
   </div>
 </article>

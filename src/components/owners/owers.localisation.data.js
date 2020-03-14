@@ -22,6 +22,7 @@ const data = {
         cancel_button: 'Cancel',
         edit_button: 'Update',
         details_button: 'Details',
+        delete_button: 'Delete',
         new_owner_button: 'New Owner',
     },
     es: {
@@ -47,6 +48,7 @@ const data = {
         cancel_button: 'Cancelar',
         edit_button: 'Actualizar',
         details_button: 'Detalles',
+        delete_button: 'Eliminar',
         new_owner_button: 'Nuevo Dueño',
     },
     fr: {
@@ -72,6 +74,7 @@ const data = {
         cancel_button: 'Annuler',
         edit_button: 'Reviser',
         details_button: 'Détails',
+        delete_button: 'Effacer',
         new_owner_button: 'Nouvelle cliente',
     }
 }

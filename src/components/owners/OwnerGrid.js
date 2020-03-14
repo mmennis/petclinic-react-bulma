@@ -31,7 +31,7 @@ export default class OwnerGrid extends React.Component {
         for (i=0, j=this.props.owners.length; i < j; i+=rowSize) {
             let rowOwners = this.props.owners.slice(i, i+rowSize)
             grid.push(
-                <OwnerRowTile owners={rowOwners} key={i} />
+                <OwnerRowTile owners={rowOwners} key={i} handleDeleteOwner={this.props.handleDeleteOwner} />
             )
         }
         return grid
@@ -40,5 +40,6 @@ export default class OwnerGrid extends React.Component {
 }
 
 OwnerGrid.propTypes = {
-    owners: PropTypes.array.isRequired
+    owners: PropTypes.array.isRequired,
+    handleDeleteOwner: PropTypes.func.isRequired,
 }

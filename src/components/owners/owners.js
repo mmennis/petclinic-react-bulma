@@ -85,6 +85,26 @@ export default class Owners extends React.Component {
             })
     }
 
+    handleDeleteOwner = (deletedOwner) => {
+        console.log(`Owner _id to be deleted ${deletedOwner._id}`)
+        axios.delete(`${BASE_URL}/owners/${deletedOwner._id}`)
+            .then((response) => {
+                if( response.status === 201) {
+                    const updatedOwners = this.state.owners.filter(owner => owner._id !== deletedOwner._id)
+                    this.setState({
+                        owners: updatedOwners,
+                        filteredOwners: updatedOwners
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error(`Problem removing owner with id ${deletedOwner._id}: ${error}`)
+            })
+            .finally(() => {
+                console.log(`Owner with id ${deletedOwner._id} removed`)
+            })
+    }
+
     render() {
         this.state.filteredOwners.sort((a, b) => (a.last_name > b.last_name) ? 1 : -1)
 
@@ -103,6 +123,7 @@ export default class Owners extends React.Component {
                 <NewOwnerForm handleNewOwner={this.handleNewOwner} modal={{closeOnBlur: true, showClose: true }} />
                 <OwnerGrid 
                     owners={gridOwners} 
+                    handleDeleteOwner={this.handleDeleteOwner}
                 />
             </Section>
         )

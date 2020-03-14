@@ -1,10 +1,15 @@
 import React from 'react'
-import { Tile, Heading, Content, Card } from 'react-bulma-components'
+import { Tile, Heading, Content, Card, Button } from 'react-bulma-components'
 import PropTypes from 'prop-types'
 import OwnersDetail from './OwnersDetail'
 import EditOwnerForm from './EditOwnerForm' 
 import Pluralize from 'react-pluralize'
 import axios from 'axios'
+import { data } from './owers.localisation.data'
+import LocalizedStrings from 'react-localization'
+import { LanguageContext } from '../localization/LanguageContext'
+
+const strings = new LocalizedStrings(data)
 
 const BASE_URL = process.env.REACT_APP_PETCLINIC_APP_API_ENDPOINT;
 
@@ -17,6 +22,7 @@ export default class OwnerTile extends React.Component {
             updated: false
         }
         this.handleOwnerUpdate = this.handleOwnerUpdate.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleOwnerUpdate = (owner) => {
@@ -33,7 +39,13 @@ export default class OwnerTile extends React.Component {
             })
     }
 
+    handleDelete = () => {
+        this.props.handleDeleteOwner(this.props.owner)
+    }
+
     render() {
+        const localeCtx = this.context
+        strings.setLanguage(localeCtx.lang)
         return (
             <Tile size={3} renderAs="article" kind="child" notification color="light" paddingless={false} key={this.props.owner._id}>
                 <Card paddingless={true} rounded="true" outlined="true" >
@@ -53,6 +65,14 @@ export default class OwnerTile extends React.Component {
                             handleOwnerUpdate={this.handleOwnerUpdate} 
                             modal={{closeOnBlur: true, showClose: true }}
                         />
+                        <Button 
+                            onClick={this.handleDelete}
+                            color="danger" size="small"
+                            style={{ 'marginLeft': '5px'}}
+                            data-testid="delete-button"
+                        >
+                            {strings.delete_button}
+                        </Button>
                     </Card.Footer>
                 </Card>                
             </Tile>
@@ -61,6 +81,9 @@ export default class OwnerTile extends React.Component {
 
 }
 
+OwnerTile.contextType = LanguageContext
+
 OwnerTile.propTypes = {
-    owner: PropTypes.object.isRequired
+    owner: PropTypes.object.isRequired,
+    handleDeleteOwner: PropTypes.func.isRequired,
 }
