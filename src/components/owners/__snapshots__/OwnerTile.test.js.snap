@@ -3,6 +3,11 @@
 exports[`OwnerTile should render as per the snapshot 1`] = `
 <article
   className="tile notification is-child is-3 is-light"
+  style={
+    Object {
+      "padding": "10px 20px 10px 20px",
+    }
+  }
 >
   <div
     className="card is-paddingless"
@@ -50,7 +55,7 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
     >
       <div>
         <button
-          className="is-small button"
+          className="is-info is-small is-rounded button"
           disabled={false}
           onClick={[Function]}
           tabIndex={0}
@@ -60,7 +65,7 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
       </div>
       <div>
         <button
-          className="is-small button"
+          className="is-warning is-small is-rounded button"
           data-testid="modal-open"
           disabled={false}
           onClick={[Function]}
@@ -74,15 +79,10 @@ exports[`OwnerTile should render as per the snapshot 1`] = `
         />
       </div>
       <button
-        className="is-danger is-small button"
+        className="is-danger is-small is-rounded button"
         data-testid="delete-button"
         disabled={false}
         onClick={[Function]}
-        style={
-          Object {
-            "marginLeft": "5px",
-          }
-        }
         tabIndex={0}
       >
         Delete

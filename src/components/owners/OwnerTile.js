@@ -47,7 +47,7 @@ export default class OwnerTile extends React.Component {
         const localeCtx = this.context
         strings.setLanguage(localeCtx.lang)
         return (
-            <Tile size={3} renderAs="article" kind="child" notification color="light" paddingless={false} key={this.props.owner._id}>
+            <Tile size={3} renderAs="article" kind="child" notification color="light" style={{ 'padding': '10px 20px 10px 20px'}}paddingless={false} key={this.props.owner._id}>
                 <Card paddingless={true} rounded="true" outlined="true" >
                     <Card.Header outlined="true" >
                         <Card.Header.Title>{this.props.owner.first_name} {this.props.owner.last_name}</Card.Header.Title>
@@ -68,8 +68,8 @@ export default class OwnerTile extends React.Component {
                         <Button 
                             onClick={this.handleDelete}
                             color="danger" size="small"
-                            style={{ 'marginLeft': '5px'}}
                             data-testid="delete-button"
+                            rounded={true}
                         >
                             {strings.delete_button}
                         </Button>
