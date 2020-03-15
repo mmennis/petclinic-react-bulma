@@ -40,7 +40,7 @@ export default class VetTile extends React.Component {
     }
 
     capitalize = (word) => {
-        return word.charAt(0).toUpperCase() + word.substring(1)
+        return (word) ? word.charAt(0).toUpperCase() + word.substring(1) : ''
     }
 
     render() {

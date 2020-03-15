@@ -28,7 +28,9 @@ exports[`VetTile should render as per the snapshot 1`] = `
       <div
         className="content is-medium"
       >
-        <p />
+        <p>
+          
+        </p>
       </div>
       <div
         className="content"
