@@ -39,6 +39,10 @@ export default class VetTile extends React.Component {
         this.props.handleDeleteVet(this.props.vet)
     }
 
+    capitalize = (word) => {
+        return word.charAt(0).toUpperCase() + word.substring(1)
+    }
+
     render() {
         const localeContext = this.context
         strings.setLanguage(localeContext.lang)
@@ -50,7 +54,7 @@ export default class VetTile extends React.Component {
                     </Card.Header>
                     <Card.Content paddingless={false} color="light">
                         <Content size="medium">
-                            <p>{this.props.vet.specialty}</p>
+                            <p>{this.capitalize(this.props.vet.specialty)}</p>
                         </Content>
                         <Content>
                             <Heading marginless={true} paddingless={false} size={6}>{strings.address_heading}</Heading>
